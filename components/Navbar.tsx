@@ -10,6 +10,7 @@ import { LANG, PHONE, WHATSAPP } from "./lib/Constants";
 import { useLang } from "./LangContext";
 import { staggerContainer, fadeUp } from "./motionVariants";
 import { Magnetic } from "./Magnetic";
+import { TopBar } from "./TopBar";
 
 export function Navbar() {
   const { lang, setLang } = useLang();
@@ -27,11 +28,13 @@ export function Navbar() {
 
   return (
     <>
+      <TopBar />
+
       {/* NAVBAR */}
       <nav
         style={{
           position: "fixed",
-          top: 0,
+          top: "var(--topbar-h)",
           left: 0,
           right: 0,
           zIndex: 200,

@@ -12,7 +12,15 @@ export const globalStyles = `
     --off: #F5F0E8;
     --muted: rgba(245,240,232,0.52);
     --nav-h: 60px;
+    --topbar-h: 34px;
+    --header-h: calc(var(--nav-h) + var(--topbar-h));
     --cards-h: 128px;
+  }
+  /* topbar is desktop-only; --header-h (used to clear the fixed header
+     stack) recalculates on its own once --topbar-h collapses here since
+     it's defined as a calc() referencing it */
+  @media (max-width: 900px) {
+    :root { --topbar-h: 0px; }
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; scrollbar-color: var(--gold) #0a0a0a; scrollbar-width: thin; }
@@ -94,7 +102,7 @@ export const globalStyles = `
      which would make position:sticky a no-op. Desktop-only: on a
      collapsed single-column mobile layout, an image "sticking" while
      scrolling past itself makes no sense, so it reverts to static. */
-  .pin-media { position: sticky; top: calc(var(--nav-h) + 28px); align-self: start; }
+  .pin-media { position: sticky; top: calc(var(--header-h) + 28px); align-self: start; }
   @media (max-width: 900px) {
     /* relative, not static — this element still needs to be the
        containing block for its absolutely-positioned children */
@@ -492,7 +500,7 @@ export const globalStyles = `
   ════════════════════════════════════════════ */
   .page-hero {
     position: relative;
-    padding: calc(var(--nav-h) + 84px) clamp(24px,5vw,80px) 80px;
+    padding: calc(var(--header-h) + 84px) clamp(24px,5vw,80px) 80px;
     background: radial-gradient(ellipse at 50% 0%, #171104 0%, var(--black) 62%);
     border-bottom: 1px solid rgba(214,180,113,.12);
     text-align: center;
@@ -681,4 +689,33 @@ export const globalStyles = `
   @media (prefers-reduced-motion: reduce) {
     .cursor-ring { transition: none; }
   }
+
+  /* utility top bar — desktop only (900px+), sits above the main nav */
+  .topbar {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 201;
+    height: var(--topbar-h);
+    background: #050505;
+    border-bottom: 1px solid rgba(214,180,113,.1);
+  }
+  @media (min-width: 901px) {
+    .topbar { display: flex; align-items: center; }
+  }
+  .topbar-inner {
+    width: 100%; max-width: 1400px; margin: 0 auto;
+    padding: 0 clamp(16px,4vw,40px);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .topbar-contact { display: flex; align-items: center; gap: 16px; }
+  .topbar a {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: rgba(245,240,232,.5); text-decoration: none;
+    font-family: 'Montserrat', sans-serif; font-size: 10.5px; letter-spacing: .03em;
+    transition: color .2s;
+  }
+  .topbar-contact a:hover { color: var(--gold); }
+  .topbar-divider { width: 1px; height: 11px; background: rgba(214,180,113,.22); }
+  .topbar-social { display: flex; align-items: center; gap: 14px; }
+  .topbar-social a { color: var(--gold); opacity: .6; transition: opacity .2s, transform .2s; }
+  .topbar-social a:hover { opacity: 1; transform: translateY(-1px); }
 `;

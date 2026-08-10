@@ -14,6 +14,14 @@ export const ADDRESS = {
 };
 export const MAPS_URL = "https://maps.app.goo.gl/5ArcqpETDTJ6N1sT8";
 
+// placeholder handles — swap for the real profile URLs when they exist
+export const SOCIAL_LINKS = {
+  instagram: "https://instagram.com/luxeglideelite",
+  facebook: "https://facebook.com/luxeglideelite",
+  linkedin: "https://linkedin.com/company/luxeglideelite",
+  tiktok: "https://tiktok.com/@luxeglideelite",
+};
+
 /* ─── FLEET ──────────────────────────────────────────────────── */
 export const FLEET = [
   {
