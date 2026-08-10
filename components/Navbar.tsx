@@ -9,6 +9,7 @@ import { Phone, MessageCircle, Menu, X } from "lucide-react";
 import { LANG, PHONE, WHATSAPP } from "./lib/Constants";
 import { useLang } from "./LangContext";
 import { staggerContainer, fadeUp } from "./motionVariants";
+import { Magnetic } from "./Magnetic";
 
 export function Navbar() {
   const { lang, setLang } = useLang();
@@ -115,13 +116,15 @@ export function Navbar() {
             </button>
 
             {/* CALL BUTTON (HIDE ON SMALL) */}
-            <a
-              href={`tel:${PHONE}`}
-              className="btn-g hide-xs"
-              style={{ padding: "9px 18px", fontSize: 9 }}
-            >
-              {t.call}
-            </a>
+            <Magnetic strength={22}>
+              <a
+                href={`tel:${PHONE}`}
+                className="btn-g hide-xs"
+                style={{ padding: "9px 18px", fontSize: 9 }}
+              >
+                {t.call}
+              </a>
+            </Magnetic>
 
             {/* ✅ MOBILE MENU BUTTON */}
             <button

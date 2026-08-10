@@ -6,6 +6,7 @@ import { Phone, MessageCircle, ArrowRight } from "lucide-react";
 import { LANG, PHONE, WHATSAPP } from "./lib/Constants";
 import { useLang } from "./LangContext";
 import { staggerContainer, fadeUp } from "./motionVariants";
+import { Magnetic } from "./Magnetic";
 
 export function ContactSection() {
   const { lang } = useLang();
@@ -26,8 +27,8 @@ export function ContactSection() {
           {t.ctaTitle}
         </motion.h2>
         <motion.div variants={fadeUp} style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-          <a href={`tel:${PHONE}`} className="btn-g"><Phone size={12} />{t.call}</a>
-          <a href={`https://wa.me/${WHATSAPP}`} className="btn-o" target="_blank" rel="noopener noreferrer"><MessageCircle size={12} />{t.whatsapp}</a>
+          <Magnetic><a href={`tel:${PHONE}`} className="btn-g"><Phone size={12} />{t.call}</a></Magnetic>
+          <Magnetic><a href={`https://wa.me/${WHATSAPP}`} className="btn-o" target="_blank" rel="noopener noreferrer"><MessageCircle size={12} />{t.whatsapp}</a></Magnetic>
         </motion.div>
         <motion.div variants={fadeUp}>
           <Link href="/contact" className={lang === "ar" ? "fa" : "fb"}

@@ -6,6 +6,8 @@ import { Phone, MessageCircle, ChevronLeft, ChevronRight, ChevronDown } from "lu
 import { LANG, PHONE, WHATSAPP } from "./lib/Constants";
 import { useLang } from "./LangContext";
 import { staggerContainer, fadeUp } from "./motionVariants";
+import { AnimatedStat } from "./AnimatedStat";
+import { Magnetic } from "./Magnetic";
 
 /* deterministic pseudo-random — integer-only LCG, not Math.sin.
    Math.sin() is only spec'd as an "implementation-approximation", so
@@ -205,10 +207,12 @@ export function HeroSection() {
             }}>{t.sub}</motion.p>
 
             <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <a href={`tel:${PHONE}`} className="btn-g"><Phone size={12} />{t.call}</a>
-              <a href={`https://wa.me/${WHATSAPP}`} className="btn-o hide-xs" target="_blank" rel="noopener noreferrer">
-                <MessageCircle size={12} />{t.whatsapp}
-              </a>
+              <Magnetic><a href={`tel:${PHONE}`} className="btn-g"><Phone size={12} />{t.call}</a></Magnetic>
+              <Magnetic>
+                <a href={`https://wa.me/${WHATSAPP}`} className="btn-o hide-xs" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle size={12} />{t.whatsapp}
+                </a>
+              </Magnetic>
             </motion.div>
           </motion.div>
         </AnimatePresence>
@@ -225,7 +229,7 @@ export function HeroSection() {
         >
           {t.stats.map((s, i) => (
             <div key={i} className="h-stat">
-              <div className={`h-stat-val ${lang === "ar" ? "fa" : "fd"}`}>{s.val}</div>
+              <AnimatedStat value={s.val} className={`h-stat-val ${lang === "ar" ? "fa" : "fd"}`} />
               <div className={`h-stat-label ${lang === "ar" ? "fa" : "fb"}`}>{s.label}</div>
             </div>
           ))}

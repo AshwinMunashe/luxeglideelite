@@ -3,6 +3,8 @@ import "./globals.css";
 import { LangProvider } from "@/components/LangContext";
 import { FloatingActions } from "@/components/FloatingActions";
 import { PageLoader } from "@/components/PageLoader";
+import { PageTransition } from "@/components/PageTransition";
+import { CustomCursor } from "@/components/CustomCursor";
 import { globalStyles } from "@/components/Styles/Styles";
 
 const siteTitle = "LuxeGlide Elite | Premium Chauffeur Services in Dubai";
@@ -44,9 +46,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <style>{globalStyles}</style>
         <div className="grain" aria-hidden />
         <LangProvider>
-          {children}
+          <PageTransition>{children}</PageTransition>
           <FloatingActions />
           <PageLoader />
+          <CustomCursor />
         </LangProvider>
       </body>
     </html>

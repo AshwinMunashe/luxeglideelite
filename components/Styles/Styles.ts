@@ -15,8 +15,18 @@ export const globalStyles = `
     --cards-h: 128px;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scrollbar-color: var(--gold) #0a0a0a; scrollbar-width: thin; }
   body { background: var(--black); color: var(--off); overflow-x: hidden; }
+
+  ::selection { background: rgba(214,180,113,.32); color: #fff; }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #0a0a0a; }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--gold-lt), var(--gold));
+    border-radius: 10px; border: 2px solid #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold-lt); }
   .fd { font-family: 'Cormorant Garamond', serif; }
   .fb { font-family: 'Montserrat', sans-serif; }
   .fa { font-family: 'Noto Naskh Arabic', serif; }
@@ -50,21 +60,21 @@ export const globalStyles = `
     font-family: 'Montserrat', sans-serif; font-weight: 500;
     font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
     padding: 11px 22px; border-radius: 999px; border: none; cursor: pointer;
-    transition: background .3s, transform .2s;
+    transition: background .3s, transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
     display: inline-flex; align-items: center; gap: 7px;
     text-decoration: none; white-space: nowrap;
   }
-  .btn-g:hover { background: var(--gold-lt); transform: translateY(-2px); }
+  .btn-g:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(214,180,113,.35); }
   .btn-o {
     background: transparent; color: var(--gold);
     font-family: 'Montserrat', sans-serif; font-weight: 400;
     font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
     padding: 10px 22px; border-radius: 999px; border: 1px solid var(--gold); cursor: pointer;
-    transition: all .3s;
+    transition: background .3s, border-color .3s, transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
     display: inline-flex; align-items: center; gap: 7px;
     text-decoration: none; white-space: nowrap;
   }
-  .btn-o:hover { background: var(--gold-dim); transform: translateY(-2px); }
+  .btn-o:hover { background: var(--gold-dim); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(214,180,113,.2); }
 
   /* carousel arrow */
   .arr {
@@ -75,8 +85,21 @@ export const globalStyles = `
     cursor: pointer; color: var(--gold);
     transition: all .3s; flex-shrink: 0; outline: none;
   }
-  .arr:hover { background: var(--gold-dim); border-color: var(--gold); transform: scale(1.08); }
+  .arr:hover { background: var(--gold-dim); border-color: var(--gold); transform: scale(1.08); box-shadow: 0 0 20px rgba(214,180,113,.3); }
   .arr-sm { width: 34px; height: 34px; }
+
+  /* pinned-image scroll effect: the image holds in place while the
+     text column beside it (taller by design) scrolls past. align-self
+     start is required — grid items stretch to row height by default,
+     which would make position:sticky a no-op. Desktop-only: on a
+     collapsed single-column mobile layout, an image "sticking" while
+     scrolling past itself makes no sense, so it reverts to static. */
+  .pin-media { position: sticky; top: calc(var(--nav-h) + 28px); align-self: start; }
+  @media (max-width: 900px) {
+    /* relative, not static — this element still needs to be the
+       containing block for its absolutely-positioned children */
+    .pin-media { position: relative !important; top: auto !important; }
+  }
 
   /* ════════════════════════════════════════════
      HERO — one unified full-viewport block.
@@ -631,5 +654,31 @@ export const globalStyles = `
   @keyframes loader-sweep {
     0% { transform: translateX(-140%); }
     100% { transform: translateX(340%); }
+  }
+
+  /* custom cursor — only takes over once CustomCursor.tsx confirms a fine
+     pointer and JS actually ran; native cursor is the fallback otherwise */
+  html.custom-cursor-active, html.custom-cursor-active a, html.custom-cursor-active button {
+    cursor: none;
+  }
+  .cursor-dot, .cursor-ring {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    pointer-events: none; border-radius: 50%;
+  }
+  .cursor-dot {
+    width: 6px; height: 6px; background: var(--gold);
+  }
+  .cursor-ring {
+    width: 34px; height: 34px; border: 1px solid rgba(214,180,113,.5);
+    transition: width .3s cubic-bezier(.22,1,.36,1), height .3s cubic-bezier(.22,1,.36,1),
+                background .3s, border-color .3s;
+  }
+  .cursor-ring.cursor-ring-active {
+    width: 52px; height: 52px;
+    background: rgba(214,180,113,.12);
+    border-color: rgba(214,180,113,.8);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cursor-ring { transition: none; }
   }
 `;

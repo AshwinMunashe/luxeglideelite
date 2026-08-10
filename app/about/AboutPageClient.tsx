@@ -10,6 +10,7 @@ import { ContactSection } from "@/components/ContactSection";
 import { LANG, ABOUT_EXTRA, ADDRESS, MAPS_URL } from "@/components/lib/Constants";
 import { useLang } from "@/components/LangContext";
 import { staggerContainer, fadeUp } from "@/components/motionVariants";
+import { AnimatedStat } from "@/components/AnimatedStat";
 
 export function AboutPageClient() {
   const { lang } = useLang();
@@ -35,8 +36,8 @@ export function AboutPageClient() {
       {/* story */}
       <section className="section-pad" style={{ padding: "90px clamp(24px,5vw,80px)", background: "#faf8f4" }} dir={t.dir}>
         <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, maxWidth: 1200, margin: "0 auto", alignItems: "center" }}>
-          <motion.div initial={{ opacity: 0, x: isRTL ? 40 : -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: .8 }}
-            style={{ borderRadius: 22, overflow: "hidden", height: 420, position: "relative", border: "1px solid rgba(214,180,113,.2)" }}>
+          <motion.div className="pin-media" initial={{ opacity: 0, x: isRTL ? 40 : -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: .8 }}
+            style={{ borderRadius: 22, overflow: "hidden", height: 420, border: "1px solid rgba(214,180,113,.2)" }}>
             <Image src="/images/cars.png" alt="LuxeGlide luxury fleet in Dubai" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover", objectPosition: "50% 42%", transform: "scale(1.08)" }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(10,8,4,.1) 0%, rgba(10,8,4,.2) 55%, rgba(10,8,4,.88) 100%)" }} />
             <div style={{ position: "absolute", bottom: 28, left: 28, right: 28 }}>
@@ -55,7 +56,7 @@ export function AboutPageClient() {
             <motion.div variants={fadeUp} style={{ display: "flex", gap: 32, marginTop: 32, justifyContent: isRTL ? "flex-end" : "flex-start" }}>
               {t.stats.map((s, i) => (
                 <div key={i} style={{ textAlign: isRTL ? "right" : "left" }}>
-                  <div className={fd} style={{ fontSize: "clamp(22px,2.4vw,32px)", fontWeight: 500, color: "var(--gold)", lineHeight: 1 }}>{s.val}</div>
+                  <AnimatedStat value={s.val} className={fd} style={{ fontSize: "clamp(22px,2.4vw,32px)", fontWeight: 500, color: "var(--gold)", lineHeight: 1 }} />
                   <div className={fb} style={{ fontSize: 9, color: "#888", marginTop: 4, letterSpacing: ".1em", textTransform: "uppercase" }}>{s.label}</div>
                 </div>
               ))}

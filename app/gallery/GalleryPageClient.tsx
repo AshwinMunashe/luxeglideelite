@@ -3,11 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ContactSection } from "@/components/ContactSection";
-import { LANG, GALLERY_ITEMS, TESTIMONIALS } from "@/components/lib/Constants";
+import { TestimonialSpotlight } from "@/components/TestimonialSpotlight";
+import { LANG, GALLERY_ITEMS } from "@/components/lib/Constants";
 import { useLang } from "@/components/LangContext";
 import { staggerContainer, fadeUp } from "@/components/motionVariants";
 
@@ -16,7 +16,6 @@ const TILE_SPAN = ["wide tall", "", "tall", "", "tall", ""];
 export function GalleryPageClient() {
   const { lang } = useLang();
   const t = LANG[lang];
-  const isRTL = t.dir === "rtl";
   const fd = lang === "ar" ? "fa" : "fd";
   const fb = lang === "ar" ? "fa" : "fb";
 
@@ -64,25 +63,7 @@ export function GalleryPageClient() {
             <motion.div variants={fadeUp} className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{t.testimonialsTag}</motion.div>
             <motion.h2 variants={fadeUp} className={fd} style={{ fontSize: "clamp(28px,3.5vw,46px)", fontWeight: 400, fontStyle: lang === "ar" ? "normal" : "italic", color: "var(--off)" }}>{t.testimonialsTitle}</motion.h2>
           </motion.div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 18 }} className="testimonial-grid">
-            {TESTIMONIALS.map((tm, i) => (
-              <motion.div key={i} className="testimonial-card"
-                initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }}
-                transition={{ delay: i * .18, duration: .9 }}
-                style={{ textAlign: isRTL ? "right" : "left" }}>
-                <div className="quote-mark">&ldquo;</div>
-                <div className="stars">
-                  {Array.from({ length: 5 }).map((_, s) => (
-                    <Star key={s} size={12} fill="var(--gold)" style={{ color: "var(--gold)" }} />
-                  ))}
-                </div>
-                <p className={fb} style={{ fontSize: 13.5, color: "rgba(245,240,232,.78)", lineHeight: 1.85, fontWeight: 300, marginBottom: 20 }}>{tm.quote[lang]}</p>
-                <div className="gline" style={{ marginBottom: 16 }} />
-                <div className={fd} style={{ fontSize: 16, fontWeight: 500, color: "var(--off)" }}>{tm.name[lang]}</div>
-                <div className={fb} style={{ fontSize: 10, color: "var(--muted)", letterSpacing: ".08em", textTransform: "uppercase" }}>{tm.role[lang]}</div>
-              </motion.div>
-            ))}
-          </div>
+          <TestimonialSpotlight />
         </div>
       </section>
 

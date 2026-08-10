@@ -7,6 +7,7 @@ import { LANG, PHONE, WHATSAPP } from "./lib/Constants";
 import { useLang } from "./LangContext";
 import { SectionTag } from "./SectionTag";
 import { staggerContainer, fadeUp } from "./motionVariants";
+import { AnimatedStat } from "./AnimatedStat";
 
 export function AboutSection() {
   const { lang } = useLang();
@@ -16,8 +17,8 @@ export function AboutSection() {
   return (
     <section id="about" className="section-pad" style={{ padding: "100px clamp(24px,5vw,80px)", background: "#faf8f4" }} dir={t.dir}>
       <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, maxWidth: 1360, margin: "0 auto", alignItems: "center" }}>
-        <motion.div initial={{ opacity: 0, x: isRTL ? 40 : -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: .8 }}
-          style={{ borderRadius: 22, overflow: "hidden", height: 460, position: "relative", border: "1px solid rgba(214,180,113,.2)" }}>
+        <motion.div className="pin-media" initial={{ opacity: 0, x: isRTL ? 40 : -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: .8 }}
+          style={{ borderRadius: 22, overflow: "hidden", height: 460, border: "1px solid rgba(214,180,113,.2)" }}>
           <Image src="/images/about-interior.webp" alt="LuxeGlide chauffeured interior" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover", objectPosition: "50% 45%" }} />
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(10,8,4,.15) 0%, rgba(10,8,4,.15) 55%, rgba(10,8,4,.85) 100%)" }} />
           <div style={{ position: "absolute", bottom: 28, left: 28, right: 28 }}>
@@ -39,7 +40,7 @@ export function AboutSection() {
           <motion.div variants={fadeUp} style={{ display: "flex", gap: 32, marginBottom: 32, justifyContent: isRTL ? "flex-end" : "flex-start" }}>
             {t.stats.map((s, i) => (
               <div key={i} style={{ textAlign: isRTL ? "right" : "left" }}>
-                <div className={lang === "ar" ? "fa" : "fd"} style={{ fontSize: "clamp(24px,2.5vw,36px)", fontWeight: 400, color: "var(--gold)", lineHeight: 1 }}>{s.val}</div>
+                <AnimatedStat value={s.val} className={lang === "ar" ? "fa" : "fd"} style={{ fontSize: "clamp(24px,2.5vw,36px)", fontWeight: 400, color: "var(--gold)", lineHeight: 1 }} />
                 <div className={lang === "ar" ? "fa" : "fb"} style={{ fontSize: 9, color: "#888", marginTop: 4, letterSpacing: ".1em", textTransform: "uppercase" }}>{s.label}</div>
               </div>
             ))}
