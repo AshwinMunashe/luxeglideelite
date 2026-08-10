@@ -1,20 +1,27 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
 import { LANG, PHONE } from "./lib/Constants";
+import { useLang } from "./LangContext";
 
-interface NavbarProps {
-  lang: "en" | "ar";
-  setLang: (lang: "en" | "ar") => void;
-}
-
-export function Navbar({ lang, setLang }: NavbarProps) {
+export function Navbar() {
+  const { lang, setLang } = useLang();
   const t = LANG[lang];
   const isRTL = t.dir === "rtl";
+  const pathname = usePathname();
 
   const [open, setOpen] = useState(false);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href.startsWith("/#")) return false;
+    return pathname.startsWith(href);
+  };
 
   return (
     <>
@@ -29,7 +36,7 @@ export function Navbar({ lang, setLang }: NavbarProps) {
           height: "var(--nav-h)",
           background: "rgba(7,7,7,.85)",
           backdropFilter: "blur(20px)",
-          borderBottom: "1px solid rgba(201,168,76,.12)",
+          borderBottom: "1px solid rgba(214,180,113,.12)",
           display: "flex",
           alignItems: "center",
         }}
@@ -47,23 +54,23 @@ export function Navbar({ lang, setLang }: NavbarProps) {
           dir={t.dir}
         >
           {/* ✅ LOGO IMAGE */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img
-              src="/images/logo.png" // 🔁 replace with your logo path
+          <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <Image
+              src="/images/logo.png"
               alt="LuxeGlide"
-              style={{
-                height: 28,
-                objectFit: "contain",
-              }}
+              width={94}
+              height={28}
+              priority
+              style={{ height: 28, width: "auto" }}
             />
-          </div>
+          </Link>
 
           {/* ✅ DESKTOP NAV */}
           <div
             className="fb nav-links"
             style={{
               display: "flex",
-              gap: 32,
+              gap: 30,
               fontSize: 9,
               letterSpacing: ".22em",
               color: "var(--muted)",
@@ -71,18 +78,20 @@ export function Navbar({ lang, setLang }: NavbarProps) {
             }}
           >
             {t.nav.map((n) => (
-              <span
-                key={n}
-                style={{ cursor: "pointer", transition: "color .2s" }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "var(--gold)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "var(--muted)")
-                }
+              <Link
+                key={n.href}
+                href={n.href}
+                style={{
+                  cursor: "pointer",
+                  transition: "color .2s",
+                  color: isActive(n.href) ? "var(--gold)" : "var(--muted)",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = isActive(n.href) ? "var(--gold)" : "var(--muted)")}
               >
-                {n}
-              </span>
+                {n.label}
+              </Link>
             ))}
           </div>
 
@@ -93,7 +102,7 @@ export function Navbar({ lang, setLang }: NavbarProps) {
               onClick={() => setLang(lang === "en" ? "ar" : "en")}
               style={{
                 background: "var(--gold-dim)",
-                border: "1px solid rgba(201,168,76,.25)",
+                border: "1px solid rgba(214,180,113,.25)",
                 color: "var(--gold)",
                 borderRadius: 999,
                 padding: "5px 14px",
@@ -117,6 +126,7 @@ export function Navbar({ lang, setLang }: NavbarProps) {
             <button
               className="menu-btn"
               onClick={() => setOpen(true)}
+              aria-label={lang === "en" ? "Open menu" : "افتح القائمة"}
               style={{
                 display: "none",
                 background: "transparent",
@@ -175,6 +185,7 @@ export function Navbar({ lang, setLang }: NavbarProps) {
               {/* CLOSE */}
               <button
                 onClick={() => setOpen(false)}
+                aria-label={lang === "en" ? "Close menu" : "أغلق القائمة"}
                 style={{
                   position: "absolute",
                   top: 20,
@@ -189,19 +200,21 @@ export function Navbar({ lang, setLang }: NavbarProps) {
 
               {/* LINKS */}
               {t.nav.map((n) => (
-                <span
-                  key={n}
+                <Link
+                  key={n.href}
+                  href={n.href}
                   style={{
                     fontSize: 14,
                     letterSpacing: ".2em",
-                    color: "var(--off)",
+                    color: isActive(n.href) ? "var(--gold)" : "var(--off)",
                     textTransform: "uppercase",
                     cursor: "pointer",
+                    textDecoration: "none",
                   }}
                   onClick={() => setOpen(false)}
                 >
-                  {n}
-                </span>
+                  {n.label}
+                </Link>
               ))}
 
               {/* CALL BUTTON */}

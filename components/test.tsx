@@ -665,7 +665,7 @@ export default function LuxeGlidePage() {
               <div style={{ position: "absolute", bottom: 32, left: 32, right: 32 }}>
                 <div className="gold-line" style={{ marginBottom: 20 }} />
                 <div className="font-display" style={{ fontSize: 36, fontWeight: 300, color: "var(--off-white)", letterSpacing: "0.05em", lineHeight: 1.2 }}>
-                  Since<br /><span style={{ color: "var(--gold)" }}>2019</span>
+                  Since<br /><span style={{ color: "var(--gold)" }}>20206</span>
                 </div>
               </div>
               <div style={{ position: "absolute", top: 32, right: 32 }}>

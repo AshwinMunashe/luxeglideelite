@@ -719,7 +719,7 @@ export default function LuxeGlidePage() {
             <div style={{ position: "absolute", bottom: 28, left: 28, right: 28 }}>
               <div className="gline" style={{ marginBottom: 16 }} />
               <div className="fd" style={{ fontSize: 30, fontWeight: 300, color: "var(--off)", letterSpacing: ".05em", lineHeight: 1.2 }}>
-                Since<br /><span style={{ color: "var(--gold)" }}>2019</span>
+                Since<br /><span style={{ color: "var(--gold)" }}>20206</span>
               </div>
             </div>
           </motion.div>

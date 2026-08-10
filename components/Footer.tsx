@@ -1,32 +1,114 @@
 "use client";
 
-import { Phone, MessageCircle } from "lucide-react";
-import { LANG,PHONE,WHATSAPP } from "./lib/Constants";
- 
+import Image from "next/image";
+import Link from "next/link";
+import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
+import { LANG, SERVICES, PHONE, WHATSAPP, EMAIL, ADDRESS, MAPS_URL } from "./lib/Constants";
+import { useLang } from "./LangContext";
 
-interface FooterProps {
-  lang: "en" | "ar";
-}
-
-export function Footer({ lang }: FooterProps) {
+export function Footer() {
+  const { lang } = useLang();
   const t = LANG[lang];
-  
+  const isRTL = t.dir === "rtl";
+  const fb = lang === "ar" ? "fa" : "fb";
+
+  const linkStyle: React.CSSProperties = {
+    display: "block", color: "rgba(245,240,232,.45)", textDecoration: "none",
+    fontSize: 12, lineHeight: 2.1, transition: "color .2s",
+  };
 
   return (
-    <footer style={{
-      borderTop: "1px solid rgba(201,168,76,.1)",
-      padding: "24px clamp(16px,4vw,80px)",
-      display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12,
-    }} dir={t.dir}>
-      <div className="fd" style={{ letterSpacing: ".32em", fontSize: 13, color: "rgba(245,240,232,.35)", fontWeight: 300 }}>LUXEGLIDE</div>
-      <div className={lang === "ar" ? "fa" : "fb"} style={{ fontSize: 9, color: "rgba(245,240,232,.22)", letterSpacing: ".08em" }}>
-        © {new Date().getFullYear()} LuxeGlide Dubai. {lang === "en" ? "Crafted for excellence." : "صُنع للتميّز."}
-      </div>
-      <div style={{ display: "flex", gap: 16 }}>
-        <a href={`tel:${PHONE}`} style={{ color: "var(--gold)", opacity: .6, transition: "opacity .2s" }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = "1")} onMouseLeave={e => (e.currentTarget.style.opacity = ".6")}><Phone size={14} /></a>
-        <a href={`https://wa.me/${WHATSAPP}`} style={{ color: "var(--gold)", opacity: .6, transition: "opacity .2s" }}
-          onMouseEnter={e => (e.currentTarget.style.opacity = "1")} onMouseLeave={e => (e.currentTarget.style.opacity = ".6")}><MessageCircle size={14} /></a>
+    <footer style={{ position: "relative", overflow: "hidden", background: "var(--black)", borderTop: "1px solid rgba(214,180,113,.14)" }} dir={t.dir}>
+      {/* ambient glow, echoes the contact CTA above it */}
+      <div style={{
+        position: "absolute", top: 0, left: "50%", transform: "translate(-50%,-50%)",
+        width: 700, height: 500, background: "radial-gradient(circle, rgba(214,180,113,.07) 0%, transparent 70%)",
+        pointerEvents: "none",
+      }} />
+
+      <div style={{ maxWidth: 1400, margin: "0 auto", padding: "64px clamp(16px,4vw,80px) 36px", position: "relative" }}>
+        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr 1fr 1.2fr", gap: 40, marginBottom: 48 }}>
+          {/* brand */}
+          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+            <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <Image src="/images/logo.png" alt="LuxeGlide" width={100} height={30} style={{ height: 26, width: "auto" }} />
+            </Link>
+            <p className={fb} style={{ fontSize: 12, color: "rgba(245,240,232,.4)", lineHeight: 1.85, fontWeight: 300, maxWidth: 280 }}>
+              {lang === "en"
+                ? "Dubai's newest standard for chauffeur-driven luxury — precision, discretion, and craft in every journey."
+                : "المعيار الأحدث للفخامة في دبي بسائق خاص — دقة وتكتم وحرفية في كل رحلة."}
+            </p>
+          </div>
+
+          {/* explore */}
+          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+            <div className={fb} style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 14 }}>
+              {lang === "en" ? "Explore" : "استكشف"}
+            </div>
+            {t.nav.map((n) => (
+              <Link key={n.href} href={n.href} className={fb} style={linkStyle}
+                onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,240,232,.45)")}>
+                {n.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* services */}
+          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+            <div className={fb} style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 14 }}>
+              {t.servicesTag}
+            </div>
+            {SERVICES.map((svc) => (
+              <Link key={svc.slug} href={`/services/${svc.slug}`} className={fb} style={linkStyle}
+                onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,240,232,.45)")}>
+                {svc.title[lang]}
+              </Link>
+            ))}
+          </div>
+
+          {/* contact */}
+          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+            <div className={fb} style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 14 }}>
+              {lang === "en" ? "Contact" : "تواصل"}
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <a href={`tel:${PHONE}`} className={fb}
+                style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 12, color: "rgba(245,240,232,.55)", textDecoration: "none", flexDirection: isRTL ? "row-reverse" : "row" }}>
+                <Phone size={13} style={{ color: "var(--gold)", flexShrink: 0 }} />{PHONE}
+              </a>
+              <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer" className={fb}
+                style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 12, color: "rgba(245,240,232,.55)", textDecoration: "none", flexDirection: isRTL ? "row-reverse" : "row" }}>
+                <MessageCircle size={13} style={{ color: "var(--gold)", flexShrink: 0 }} />{t.whatsapp}
+              </a>
+              <a href={`mailto:${EMAIL}`} className={fb}
+                style={{ display: "flex", alignItems: "center", gap: 9, fontSize: 12, color: "rgba(245,240,232,.55)", textDecoration: "none", wordBreak: "break-all", flexDirection: isRTL ? "row-reverse" : "row" }}>
+                <Mail size={13} style={{ color: "var(--gold)", flexShrink: 0 }} />{EMAIL}
+              </a>
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className={fb}
+                style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 12, color: "rgba(245,240,232,.55)", lineHeight: 1.6, textDecoration: "none", flexDirection: isRTL ? "row-reverse" : "row" }}>
+                <MapPin size={13} style={{ color: "var(--gold)", flexShrink: 0, marginTop: 2 }} />{ADDRESS[lang]}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="gline" />
+
+        <div style={{
+          paddingTop: 20, display: "flex", flexWrap: "wrap", gap: 12,
+          justifyContent: "space-between", alignItems: "center",
+        }}>
+          <div className={fb} style={{ fontSize: 9, color: "rgba(245,240,232,.28)", letterSpacing: ".06em" }}>
+            {lang === "en"
+              ? `© ${new Date().getFullYear()} LuxeGlide Elite Chauffeur Services. All rights reserved.`
+              : `© ${new Date().getFullYear()} لوكسي جلايد إيليت لخدمات السائق الخاص. جميع الحقوق محفوظة.`}
+          </div>
+          <div className={fb} style={{ fontSize: 9, color: "rgba(245,240,232,.28)", letterSpacing: ".06em" }}>
+            {lang === "en" ? "Business Bay, Dubai, UAE" : "الخليج التجاري، دبي، الإمارات"}
+          </div>
+        </div>
       </div>
     </footer>
   );

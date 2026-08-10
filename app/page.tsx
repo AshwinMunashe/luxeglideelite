@@ -2,39 +2,36 @@
 
 import { AboutSection } from "@/components/Aboutsection";
 import { ContactSection } from "@/components/ContactSection";
+import { FleetPreview } from "@/components/FleetPreview";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
+import { Marquee } from "@/components/Marquee";
 import { Navbar } from "@/components/Navbar";
 import { ServicesSection } from "@/components/ServicesSection";
-import { globalStyles } from "@/components/Styles/Styles";
 import { WhyChooseUs } from "@/components/whychooseus";
-import { useState } from "react";
- 
-export default function LuxeGlidePage() {
-  const [lang, setLang] = useState<"en" | "ar">("en");
 
+export default function LuxeGlidePage() {
   return (
     <>
-      <style>{globalStyles}</style>
+      <Navbar />
 
-      <div className="grain" aria-hidden />
-
-      <Navbar lang={lang} setLang={setLang} />
-
-      <HeroSection lang={lang} />
+      <HeroSection />
 
       {/* ══ END HERO ══ */}
 
-      <AboutSection lang={lang} />
+      <Marquee />
 
-      <ServicesSection lang={lang} />
+      <AboutSection />
 
-      <WhyChooseUs lang={lang} />
+      <ServicesSection />
 
-      <ContactSection lang={lang} />
+      <FleetPreview />
 
-      <Footer lang={lang} />
+      <WhyChooseUs />
+
+      <ContactSection />
+
+      <Footer />
     </>
   );
 }
-
