@@ -12,7 +12,7 @@ export function ContactSection() {
   const t = LANG[lang];
 
   return (
-    <section id="contact" style={{
+    <section id="contact" className="section-pad" style={{
       padding: "100px clamp(24px,5vw,80px)", textAlign: "center",
       background: "linear-gradient(180deg,var(--black) 0%,#100d03 50%,var(--black) 100%)",
       position: "relative", overflow: "hidden",

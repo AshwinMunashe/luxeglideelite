@@ -33,7 +33,7 @@ export function GalleryPageClient() {
         </motion.div>
       </motion.section>
 
-      <section style={{ padding: "80px clamp(24px,5vw,80px) 20px", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "80px clamp(24px,5vw,80px) 20px", background: "var(--black)" }} dir={t.dir}>
         <div className="gallery-grid" style={{ maxWidth: 1200, margin: "0 auto" }}>
           {GALLERY_ITEMS.map((item, i) => {
             const Icon = item.icon;
@@ -58,7 +58,7 @@ export function GalleryPageClient() {
         </div>
       </section>
 
-      <section style={{ padding: "80px clamp(24px,5vw,80px) 100px", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "80px clamp(24px,5vw,80px) 100px", background: "var(--black)" }} dir={t.dir}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} style={{ textAlign: "center", marginBottom: 48 }}>
             <motion.div variants={fadeUp} className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{t.testimonialsTag}</motion.div>

@@ -14,7 +14,7 @@ export function AboutSection() {
   const isRTL = t.dir === "rtl";
 
   return (
-    <section id="about" style={{ padding: "100px clamp(24px,5vw,80px)", background: "#faf8f4" }} dir={t.dir}>
+    <section id="about" className="section-pad" style={{ padding: "100px clamp(24px,5vw,80px)", background: "#faf8f4" }} dir={t.dir}>
       <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, maxWidth: 1360, margin: "0 auto", alignItems: "center" }}>
         <motion.div initial={{ opacity: 0, x: isRTL ? 40 : -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: .8 }}
           style={{ borderRadius: 22, overflow: "hidden", height: 460, position: "relative", border: "1px solid rgba(214,180,113,.2)" }}>

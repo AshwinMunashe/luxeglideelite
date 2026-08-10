@@ -30,7 +30,7 @@ export function FleetPageClient() {
         </div>
       </section>
 
-      <section style={{ padding: "80px clamp(24px,5vw,80px)", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "80px clamp(24px,5vw,80px)", background: "var(--black)" }} dir={t.dir}>
         <div className="fleet-grid" style={{ maxWidth: 1360, margin: "0 auto" }}>
           {FLEET.map((car, i) => (
             <motion.div key={car.slug} className="fleet-card"

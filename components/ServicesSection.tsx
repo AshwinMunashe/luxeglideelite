@@ -15,7 +15,7 @@ export function ServicesSection() {
   const isRTL = t.dir === "rtl";
 
   return (
-    <section id="services" style={{ padding: "100px clamp(24px,5vw,80px)", background: "#0d0d0d" }} dir={t.dir}>
+    <section id="services" className="section-pad" style={{ padding: "100px clamp(24px,5vw,80px)", background: "#0d0d0d" }} dir={t.dir}>
       <div style={{ maxWidth: 1360, margin: "0 auto" }}>
         <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} style={{ textAlign: "center", marginBottom: 56 }}>
           <motion.div variants={fadeUp}><SectionTag index="02" label={t.servicesTag} /></motion.div>

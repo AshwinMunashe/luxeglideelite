@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LangProvider } from "@/components/LangContext";
 import { FloatingActions } from "@/components/FloatingActions";
+import { PageLoader } from "@/components/PageLoader";
 import { globalStyles } from "@/components/Styles/Styles";
 
 const siteTitle = "LuxeGlide Elite | Premium Chauffeur Services in Dubai";
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LangProvider>
           {children}
           <FloatingActions />
+          <PageLoader />
         </LangProvider>
       </body>
     </html>

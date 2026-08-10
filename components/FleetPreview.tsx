@@ -18,7 +18,7 @@ export function FleetPreview() {
   const preview = FLEET.slice(0, 3);
 
   return (
-    <section style={{ padding: "100px clamp(24px,5vw,80px)", background: "#0d0d0d" }} dir={t.dir}>
+    <section className="section-pad" style={{ padding: "100px clamp(24px,5vw,80px)", background: "#0d0d0d" }} dir={t.dir}>
       <div style={{ maxWidth: 1360, margin: "0 auto" }}>
         <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} style={{ textAlign: "center", marginBottom: 48 }}>
           <motion.div variants={fadeUp}><SectionTag index="03" label={t.fleetPreviewTag} /></motion.div>

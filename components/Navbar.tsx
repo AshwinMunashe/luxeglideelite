@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Menu, X } from "lucide-react";
-import { LANG, PHONE } from "./lib/Constants";
+import { Phone, MessageCircle, Menu, X } from "lucide-react";
+import { LANG, PHONE, WHATSAPP } from "./lib/Constants";
 import { useLang } from "./LangContext";
+import { staggerContainer, fadeUp } from "./motionVariants";
 
 export function Navbar() {
   const { lang, setLang } = useLang();
@@ -151,11 +152,12 @@ export function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: .5, ease: [.22, 1, .36, 1] }}
               style={{
                 position: "fixed",
                 inset: 0,
-                background: "rgba(0,0,0,.6)",
-                backdropFilter: "blur(8px)",
+                background: "rgba(4,4,4,.78)",
+                backdropFilter: "blur(10px)",
                 zIndex: 199,
               }}
             />
@@ -165,63 +167,104 @@ export function Navbar() {
               initial={{ x: isRTL ? "-100%" : "100%" }}
               animate={{ x: 0 }}
               exit={{ x: isRTL ? "-100%" : "100%" }}
-              transition={{ type: "spring", stiffness: 260, damping: 30 }}
+              transition={{ duration: .65, ease: [.22, 1, .36, 1] }}
               style={{
                 position: "fixed",
                 top: 0,
                 [isRTL ? "left" : "right"]: 0,
-                width: "80%",
-                maxWidth: 320,
-                height: "100vh",
-                background: "rgba(10,10,10,.95)",
-                backdropFilter: "blur(20px)",
+                width: "82%",
+                maxWidth: 340,
+                height: "100dvh",
+                background: "#0a0a0a",
+                [isRTL ? "borderRight" : "borderLeft"]: "1px solid rgba(214,180,113,.25)",
                 zIndex: 200,
-                padding: "80px 24px",
                 display: "flex",
                 flexDirection: "column",
-                gap: 28,
+                overflow: "hidden",
               }}
             >
+              {/* ambient gold glow, echoes the rest of the site */}
+              <div style={{
+                position: "absolute", top: -80, [isRTL ? "left" : "right"]: -80,
+                width: 280, height: 280, borderRadius: "50%",
+                background: "radial-gradient(circle, rgba(214,180,113,.14) 0%, transparent 70%)",
+                pointerEvents: "none",
+              }} />
+
               {/* CLOSE */}
               <button
                 onClick={() => setOpen(false)}
                 aria-label={lang === "en" ? "Close menu" : "أغلق القائمة"}
-                style={{
-                  position: "absolute",
-                  top: 20,
-                  right: 20,
-                  background: "none",
-                  border: "none",
-                  color: "var(--gold)",
-                }}
+                className="arr arr-sm"
+                style={{ position: "absolute", top: 20, [isRTL ? "left" : "right"]: 20, zIndex: 1 }}
               >
-                <X size={22} />
+                <X size={16} />
               </button>
 
-              {/* LINKS */}
-              {t.nav.map((n) => (
-                <Link
-                  key={n.href}
-                  href={n.href}
-                  style={{
-                    fontSize: 14,
-                    letterSpacing: ".2em",
-                    color: isActive(n.href) ? "var(--gold)" : "var(--off)",
-                    textTransform: "uppercase",
-                    cursor: "pointer",
-                    textDecoration: "none",
-                  }}
-                  onClick={() => setOpen(false)}
-                >
-                  {n.label}
-                </Link>
-              ))}
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="show"
+                style={{ position: "relative", padding: "76px 28px 32px", display: "flex", flexDirection: "column", flex: 1, textAlign: isRTL ? "right" : "left" }}
+                dir={t.dir}
+              >
+                {/* brand mark */}
+                <motion.div variants={fadeUp} style={{ marginBottom: 36 }}>
+                  <Image src="/images/logo.png" alt="LuxeGlide" width={100} height={30} style={{ height: 26, width: "auto" }} />
+                </motion.div>
 
-              {/* CALL BUTTON */}
-              <a href={`tel:${PHONE}`} className="btn-g">
-                <Phone size={14} />
-                {t.call}
-              </a>
+                {/* LINKS */}
+                <nav style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 32 }}>
+                  {t.nav.map((n, i) => (
+                    <motion.div key={n.href} variants={fadeUp}>
+                      <Link
+                        href={n.href}
+                        className="fd"
+                        style={{
+                          display: "flex", alignItems: "baseline", gap: 12,
+                          flexDirection: isRTL ? "row-reverse" : "row",
+                          padding: "9px 0",
+                          fontSize: 21, fontWeight: 400, fontStyle: "italic",
+                          color: isActive(n.href) ? "var(--gold)" : "var(--off)",
+                          textDecoration: "none",
+                        }}
+                        onClick={() => setOpen(false)}
+                      >
+                        <span className="fb" style={{ fontSize: 10, fontStyle: "normal", color: "var(--gold)", opacity: .6 }}>
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        {n.label}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
+
+                <motion.div variants={fadeUp} className="gline" style={{ marginBottom: 24 }} />
+
+                {/* CTAs */}
+                <motion.div variants={fadeUp} style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
+                  <a href={`tel:${PHONE}`} className="btn-g" style={{ justifyContent: "center" }}>
+                    <Phone size={14} />{t.call}
+                  </a>
+                  <a href={`https://wa.me/${WHATSAPP}`} target="_blank" rel="noopener noreferrer" className="btn-o" style={{ justifyContent: "center" }}>
+                    <MessageCircle size={14} />{t.whatsapp}
+                  </a>
+                </motion.div>
+
+                <motion.div variants={fadeUp} style={{ marginTop: "auto" }}>
+                  <button
+                    onClick={() => setLang(lang === "en" ? "ar" : "en")}
+                    className="fb"
+                    style={{
+                      background: "transparent", border: "1px solid rgba(214,180,113,.3)",
+                      color: "var(--gold)", borderRadius: 999, padding: "8px 18px",
+                      fontSize: 11, letterSpacing: ".08em", cursor: "pointer",
+                    }}
+                  >
+                    {lang === "en" ? "العربية" : "English"}
+                  </button>
+                </motion.div>
+              </motion.div>
             </motion.div>
           </>
         )}

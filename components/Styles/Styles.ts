@@ -569,6 +569,11 @@ export const globalStyles = `
     .about-grid, .why-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
     .values-grid { grid-template-columns: repeat(2,1fr) !important; }
     .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+    /* every stacked content section on the same 90-100px top+bottom
+       rhythm makes mobile pages feel like an endless scroll once grids
+       collapse to one column — tighten the rhythm without touching desktop */
+    .section-pad { padding-top: 60px !important; padding-bottom: 60px !important; }
+    .section-pad-b { padding-bottom: 60px !important; }
     .timeline { flex-direction: column !important; gap: 28px !important; padding-top: 0 !important; }
     .timeline::before { left: 5px !important; right: auto !important; top: 0 !important; bottom: 0 !important; width: 1px !important; height: auto !important; background: linear-gradient(180deg,transparent,rgba(214,180,113,.4),transparent) !important; }
     .timeline-item { flex-direction: row !important; align-items: center !important; text-align: left !important; padding-left: 26px !important; }
@@ -583,6 +588,9 @@ export const globalStyles = `
     .testimonial-grid { grid-template-columns: 1fr !important; }
     .values-grid { grid-template-columns: 1fr !important; }
     .footer-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .section-pad { padding-top: 48px !important; padding-bottom: 48px !important; }
+    .section-pad-b { padding-bottom: 48px !important; }
+    .about-grid, .why-grid { gap: 28px !important; }
   }
 
   /* respect reduced-motion: stop the decorative infinite-loop
@@ -595,8 +603,33 @@ export const globalStyles = `
     .hero-particles span { animation: none; opacity: .5; }
     .scroll-cue { animation: none; }
     .marquee-track { animation: none; }
+    .page-loader-line::after { animation: none; left: 0; width: 100%; }
     .float-btn, .c-cell, .svc-card, .fleet-card, .gallery-tile, .testimonial-card, .arr {
       transition: none;
     }
+  }
+
+  /* full-screen branded loader, shown until the page is actually ready */
+  .page-loader {
+    position: fixed; inset: 0; z-index: 500;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--black);
+    opacity: 1; visibility: visible;
+    transition: opacity .7s ease, visibility .7s ease;
+  }
+  .page-loader-out { opacity: 0; visibility: hidden; pointer-events: none; }
+  .page-loader-mark { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .page-loader-line {
+    width: 100px; height: 1px; position: relative; overflow: hidden;
+    background: rgba(214,180,113,.2);
+  }
+  .page-loader-line::after {
+    content: ""; position: absolute; inset: 0; width: 40%;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: loader-sweep 1.3s ease-in-out infinite;
+  }
+  @keyframes loader-sweep {
+    0% { transform: translateX(-140%); }
+    100% { transform: translateX(340%); }
   }
 `;

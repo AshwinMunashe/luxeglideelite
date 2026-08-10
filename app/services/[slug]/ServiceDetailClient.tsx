@@ -75,7 +75,7 @@ export function ServiceDetailClient({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <section style={{ padding: "56px clamp(24px,5vw,80px) 80px", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "56px clamp(24px,5vw,80px) 80px", background: "var(--black)" }} dir={t.dir}>
         <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: 56, maxWidth: 1200, margin: "0 auto", alignItems: "start" }} className="svc-detail-grid">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} style={{ textAlign: isRTL ? "right" : "left" }}>
             <p className={fb} style={{ fontSize: 15, color: "rgba(245,240,232,.75)", lineHeight: 1.95, fontWeight: 300, whiteSpace: "pre-line", marginBottom: 24 }}>{svc.long[lang]}</p>
@@ -111,7 +111,7 @@ export function ServiceDetailClient({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <section style={{ padding: "0 clamp(24px,5vw,80px) 90px", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad-b" style={{ padding: "0 clamp(24px,5vw,80px) 90px", background: "var(--black)" }} dir={t.dir}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="gline" style={{ marginBottom: 40 }} />
           <div className={fb} style={{ fontSize: 10, letterSpacing: ".28em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, textAlign: isRTL ? "right" : "left" }}>

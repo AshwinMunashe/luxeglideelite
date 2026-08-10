@@ -38,6 +38,13 @@ export function HeroSection() {
   const { lang } = useLang();
   const [mobileCardIdx, setMobileCardIdx] = useState(0);
   const [activeVideo, setActiveVideo] = useState(0);
+  // both start "unresolved" so SSR/hydration markup matches (no video
+  // rendered yet either way) — the media-query check only runs client-side
+  // after mount, same pattern as LangContext. videoModeReady gates the
+  // whole block so the heavy desktop (3-video) branch can't even briefly
+  // mount on mobile while isSmallScreen is still settling
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [videoModeReady, setVideoModeReady] = useState(false);
   const t = LANG[lang];
   const isRTL = t.dir === "rtl";
   const particles = useMemo(() => PARTICLES, []);
@@ -48,6 +55,20 @@ export function HeroSection() {
     }, 5000); // Swipes every 5 seconds
     return () => clearInterval(interval);
   }, [t.features.length]);
+
+  useEffect(() => {
+    // on desktop all three clips preload + play at once so the crossfade
+    // is a pure opacity dissolve with nothing to wait on. On mobile that's
+    // ~39MB downloading simultaneously — real data/battery cost — so
+    // there we mount one <video> at a time instead (see render below)
+    const mq = window.matchMedia("(max-width: 768px)");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time client-only read, mirrors LangContext's hydration-safe pattern
+    setIsSmallScreen(mq.matches);
+    setVideoModeReady(true);
+    const handler = (e: MediaQueryListEvent) => setIsSmallScreen(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -73,17 +94,36 @@ export function HeroSection() {
     ══════════════════════════════════════════ */
     <section className="hero" id="home" dir={t.dir}>
 
-      {/* L0 — luxury video backdrop: three clips crossfading in sequence.
-          All three play continuously; only opacity changes, so the
-          transition is a slow, silent dissolve rather than a cut. */}
-      {HERO_VIDEOS.map((src, i) => (
-        <video
-          key={src}
-          className="hero-video"
-          autoPlay muted loop playsInline
-          src={src}
-          style={{ opacity: i === activeVideo ? 1 : 0 }}
-        />
+      {/* L0 — luxury video backdrop.
+          Desktop: all three clips mounted + playing at once, crossfade is
+          a pure opacity dissolve (nothing to (re)load mid-transition).
+          Mobile: only the active clip is ever mounted, so just one file
+          downloads/plays at a time instead of all three simultaneously —
+          same three-clip rotation, a fraction of the data/battery cost. */}
+      {videoModeReady && (isSmallScreen ? (
+        <AnimatePresence>
+          <motion.video
+            key={HERO_VIDEOS[activeVideo]}
+            className="hero-video"
+            autoPlay muted loop playsInline
+            src={HERO_VIDEOS[activeVideo]}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            style={{ position: "absolute", inset: 0 }}
+          />
+        </AnimatePresence>
+      ) : (
+        HERO_VIDEOS.map((src, i) => (
+          <video
+            key={src}
+            className="hero-video"
+            autoPlay muted loop playsInline
+            src={src}
+            style={{ opacity: i === activeVideo ? 1 : 0 }}
+          />
+        ))
       ))}
 
       {/* L1 — warm gold colour grade */}

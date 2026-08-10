@@ -13,7 +13,7 @@ export function WhyChooseUs() {
   const isRTL = t.dir === "rtl";
 
   return (
-    <section style={{ padding: "100px clamp(24px,5vw,80px)", background: "var(--black)", borderTop: "1px solid rgba(214,180,113,.07)" }} dir={t.dir}>
+    <section className="section-pad" style={{ padding: "100px clamp(24px,5vw,80px)", background: "var(--black)", borderTop: "1px solid rgba(214,180,113,.07)" }} dir={t.dir}>
       <div className="why-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, maxWidth: 1360, margin: "0 auto", alignItems: "center" }}>
         <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}
           style={{ textAlign: isRTL ? "right" : "left" }}>

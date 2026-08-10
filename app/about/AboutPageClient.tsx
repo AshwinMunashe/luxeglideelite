@@ -33,7 +33,7 @@ export function AboutPageClient() {
       </motion.section>
 
       {/* story */}
-      <section style={{ padding: "90px clamp(24px,5vw,80px)", background: "#faf8f4" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "90px clamp(24px,5vw,80px)", background: "#faf8f4" }} dir={t.dir}>
         <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, maxWidth: 1200, margin: "0 auto", alignItems: "center" }}>
           <motion.div initial={{ opacity: 0, x: isRTL ? 40 : -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: .8 }}
             style={{ borderRadius: 22, overflow: "hidden", height: 420, position: "relative", border: "1px solid rgba(214,180,113,.2)" }}>
@@ -65,7 +65,7 @@ export function AboutPageClient() {
       </section>
 
       {/* values */}
-      <section style={{ padding: "90px clamp(24px,5vw,80px)", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "90px clamp(24px,5vw,80px)", background: "var(--black)" }} dir={t.dir}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} style={{ textAlign: "center", marginBottom: 52 }}>
             <motion.div variants={fadeUp} className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{a.valuesTag}</motion.div>
@@ -90,7 +90,7 @@ export function AboutPageClient() {
       </section>
 
       {/* standards */}
-      <section style={{ padding: "90px clamp(24px,5vw,80px)", background: "#0d0d0d" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "90px clamp(24px,5vw,80px)", background: "#0d0d0d" }} dir={t.dir}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} style={{ textAlign: "center", marginBottom: 52 }}>
             <motion.div variants={fadeUp} className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{a.standardsTag}</motion.div>
@@ -115,7 +115,7 @@ export function AboutPageClient() {
       </section>
 
       {/* milestones */}
-      <section style={{ padding: "0 clamp(24px,5vw,80px) 100px", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad-b" style={{ padding: "0 clamp(24px,5vw,80px) 100px", background: "var(--black)" }} dir={t.dir}>
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <div className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 32, textAlign: "center" }}>{a.milestonesTag}</div>
           <div className="timeline">
@@ -131,7 +131,7 @@ export function AboutPageClient() {
       </section>
 
       {/* visit us */}
-      <section style={{ padding: "0 clamp(24px,5vw,80px) 100px", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad-b" style={{ padding: "0 clamp(24px,5vw,80px) 100px", background: "var(--black)" }} dir={t.dir}>
         <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <motion.div variants={fadeUp} className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{t.visitTag}</motion.div>
           <motion.h2 variants={fadeUp} className={fd} style={{ fontSize: "clamp(24px,3vw,36px)", fontWeight: 400, fontStyle: lang === "ar" ? "normal" : "italic", color: "var(--off)", marginBottom: 28 }}>{t.visitTitle}</motion.h2>

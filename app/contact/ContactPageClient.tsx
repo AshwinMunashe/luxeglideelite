@@ -71,7 +71,7 @@ export function ContactPageClient() {
         </div>
       </section>
 
-      <section style={{ padding: "80px clamp(24px,5vw,80px)", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "80px clamp(24px,5vw,80px)", background: "var(--black)" }} dir={t.dir}>
         <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 40, maxWidth: 1160, margin: "0 auto", alignItems: "start" }} className="svc-detail-grid">
           {/* form */}
           <motion.form onSubmit={handleSubmit}
@@ -154,7 +154,7 @@ export function ContactPageClient() {
       </section>
 
       {/* FAQ */}
-      <section style={{ padding: "0 clamp(24px,5vw,80px) 100px", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad-b" style={{ padding: "0 clamp(24px,5vw,80px) 100px", background: "var(--black)" }} dir={t.dir}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{c.faqTag}</div>

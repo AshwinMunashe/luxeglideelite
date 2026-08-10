@@ -60,7 +60,7 @@ const LANG = {
     aboutP2: "What sets us apart is our commitment to detail and passion for excellence. With a meticulously maintained fleet and professionally trained chauffeurs, we offer more than transportation — we create a calm, luxurious experience.",
     learnMore: "Learn More",
     stats: [
-      { val: "500+", label: "Happy Clients" },
+      { val: "100+", label: "Happy Clients" },
       { val: "24/7", label: "Availability" },
       { val: "100%", label: "Satisfaction" },
     ],
@@ -109,7 +109,7 @@ const LANG = {
     aboutP2: "ما يميزنا هو التزامنا بالتفاصيل وشغفنا بالتميز. بأسطول مُصان بعناية وسائقين مدربين احترافياً، نقدم أكثر من مجرد نقل — نخلق تجربة هادئة وفاخرة.",
     learnMore: "اعرف المزيد",
     stats: [
-      { val: "500+", label: "عميل سعيد" },
+      { val: "100+", label: "عميل سعيد" },
       { val: "٢٤/٧", label: "متوفرون دائماً" },
       { val: "100%", label: "رضا تام" },
     ],

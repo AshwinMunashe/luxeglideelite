@@ -30,7 +30,7 @@ export function ServicesPageClient() {
         </div>
       </section>
 
-      <section style={{ padding: "80px clamp(24px,5vw,80px)", background: "#0d0d0d" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "80px clamp(24px,5vw,80px)", background: "#0d0d0d" }} dir={t.dir}>
         <div className="svc-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16, maxWidth: 1360, margin: "0 auto" }}>
           {SERVICES.map((svc, i) => {
             const Icon = svc.icon;
@@ -60,7 +60,7 @@ export function ServicesPageClient() {
         </div>
       </section>
 
-      <section style={{ padding: "90px clamp(24px,5vw,80px)", background: "var(--black)" }} dir={t.dir}>
+      <section className="section-pad" style={{ padding: "90px clamp(24px,5vw,80px)", background: "var(--black)" }} dir={t.dir}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{t.howTag}</div>
