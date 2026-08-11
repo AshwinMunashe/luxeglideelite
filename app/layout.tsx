@@ -6,7 +6,7 @@ import { PageLoader } from "@/components/PageLoader";
 import { PageTransition } from "@/components/PageTransition";
 import { CustomCursor } from "@/components/CustomCursor";
 import { globalStyles } from "@/components/Styles/Styles";
-import { PHONE, EMAIL, ADDRESS, SOCIAL_LINKS } from "@/components/lib/Constants";
+import { PHONE, EMAIL, ADDRESS, SOCIAL_LINKS, TESTIMONIALS } from "@/components/lib/Constants";
 
 const siteTitle = "LuxeGlide Elite | Premium Chauffeur Services in Dubai";
 const siteDescription =
@@ -23,14 +23,12 @@ export const metadata: Metadata = {
     siteName: "LuxeGlide Elite",
     title: siteTitle,
     description: siteDescription,
-    images: [{ url: "/images/logo.png", alt: "LuxeGlide Elite — Luxury Chauffeur Services in Dubai" }],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: ["/images/logo.png"],
   },
 };
 
@@ -59,6 +57,17 @@ const businessJsonLd = {
     closes: "23:59",
   },
   sameAs: Object.values(SOCIAL_LINKS),
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    reviewCount: String(TESTIMONIALS.length),
+  },
+  review: TESTIMONIALS.map((tm) => ({
+    "@type": "Review",
+    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+    author: { "@type": "Person", name: tm.name.en },
+    reviewBody: tm.quote.en,
+  })),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
