@@ -2,6 +2,7 @@
 
 import { AboutSection } from "@/components/Aboutsection";
 import { ContactSection } from "@/components/ContactSection";
+import { FaqSection } from "@/components/FaqSection";
 import { FleetPreview } from "@/components/FleetPreview";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
@@ -28,6 +29,8 @@ export default function LuxeGlidePage() {
       <FleetPreview />
 
       <WhyChooseUs />
+
+      <FaqSection />
 
       <ContactSection />
 

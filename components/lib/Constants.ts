@@ -1,7 +1,8 @@
 import {
   Car, ShieldCheck, Clock, User, MapPin, Star, Users, Briefcase,
   Award, Gem, Sparkles, HeartHandshake, MessageCircle, CalendarCheck,
-  BadgeCheck, Radar, Headset, FileCheck,
+  BadgeCheck, Radar, Headset, FileCheck, Building2, PlaneTakeoff,
+  Landmark, Waves,
 } from "lucide-react";
 
 /* ─── CONSTANTS ─────────────────────────────────────────────── */
@@ -36,6 +37,18 @@ export const FLEET = [
       seats: { en: "4 Seats", ar: "4 مقاعد" },
       feature: { en: "Massage Seats", ar: "مقاعد تدليك" },
     },
+    long: {
+      en: "The S-Class is the benchmark every other executive sedan is measured against, and it's our most requested vehicle for exactly that reason. Massage seats, rear-seat climate control, and a cabin engineered to stay near-silent at highway speed make it the default choice for clients who spend as much time working in the back seat as they do in the office.\n\nWe run it constantly for airport transfers, board-level corporate travel, and any booking where the vehicle itself needs to make an impression without shouting about it.",
+      ar: "سيارة S كلاس هي المعيار الذي تُقاس عليه كل سيارة تنفيذية أخرى، وهذا بالضبط سبب كونها الأكثر طلباً لدينا. مقاعد التدليك، والتحكم بمناخ المقاعد الخلفية، ومقصورة صُممت لتبقى شبه صامتة عند سرعة الطريق السريع، تجعلها الخيار الافتراضي للعملاء الذين يقضون وقتاً في العمل من المقعد الخلفي بقدر ما يقضونه في المكتب.\n\nنستخدمها باستمرار لتحويلات المطار، والسفر المؤسسي على مستوى مجلس الإدارة، وأي حجز تحتاج فيه السيارة نفسها لترك انطباع دون مبالغة.",
+    },
+    idealFor: {
+      en: "Executives, board members, and airport transfers where a quiet, composed ride matters most.",
+      ar: "المديرين التنفيذيين وأعضاء مجلس الإدارة وتحويلات المطار حيث تكون الرحلة الهادئة والمتزنة هي الأهم.",
+    },
+    highlights: {
+      en: ["Massage & heated rear seats", "Rear-seat climate zones", "Near-silent cabin insulation", "Ambient lighting suite"],
+      ar: ["مقاعد خلفية بتدليك وتدفئة", "مناطق تحكم مناخي خلفية", "عزل شبه صامت للمقصورة", "إضاءة محيطية متعددة"],
+    },
   },
   {
     slug: "bmw-7-series",
@@ -48,6 +61,18 @@ export const FLEET = [
       power: { en: "375 HP", ar: "375 حصان" },
       seats: { en: "5 Seats", ar: "5 مقاعد" },
       feature: { en: "Executive Lounge", ar: "مقصورة تنفيذية" },
+    },
+    long: {
+      en: "The 7 Series trades a fraction of the S-Class's hush for a sportier drive and a cabin that feels more like a private lounge than a car — wider rear bench, crystal-effect trim, and an executive lounge seating configuration that reclines further than most business-class flights.\n\nIt's the vehicle we reach for when clients want the S-Class's presence with a slightly more contemporary character, particularly for evening bookings and client entertainment.",
+      ar: "تتنازل الفئة السابعة عن جزء بسيط من هدوء S كلاس مقابل قيادة أكثر رياضية ومقصورة تشبه صالة خاصة أكثر من كونها سيارة — مقعد خلفي أعرض، تشطيبات بلورية، وتصميم مقاعد تنفيذية ينحني للخلف أكثر من معظم مقاعد درجة رجال الأعمال في الطائرات.\n\nإنها السيارة التي نلجأ إليها عندما يرغب العملاء بحضور S كلاس مع طابع أكثر عصرية، خصوصاً في حجوزات المساء وضيافة العملاء.",
+    },
+    idealFor: {
+      en: "Client entertainment, evening bookings, and travellers who want presence with a sportier edge.",
+      ar: "ضيافة العملاء وحجوزات المساء والمسافرين الراغبين بالحضور مع لمسة رياضية.",
+    },
+    highlights: {
+      en: ["Executive lounge reclining seats", "Crystal-effect interior trim", "Sportier drive character", "Rear entertainment display"],
+      ar: ["مقاعد تنفيذية قابلة للانحناء", "تشطيبات داخلية بلورية", "طابع قيادة أكثر رياضية", "شاشة ترفيه خلفية"],
     },
   },
   {
@@ -62,6 +87,18 @@ export const FLEET = [
       seats: { en: "4 Seats", ar: "4 مقاعد" },
       feature: { en: "Starlight Headliner", ar: "سقف النجوم المضيء" },
     },
+    long: {
+      en: "There's a reason the Ghost is the car most often requested by name: it's the closest thing to effortless we can put on the road. The starlight headliner, the near-total absence of road noise, and a ride quality Rolls-Royce engineers literally call 'magic carpet' make every journey feel like the occasion, not just the transport to one.\n\nWe reserve it for weddings, red-carpet arrivals, and VIP bookings where the vehicle itself is part of the moment — and a backup car is placed on standby as standard for every Ghost booking, at no extra charge.",
+      ar: "هناك سبب لكون الغوست السيارة الأكثر طلباً بالاسم تحديداً: إنها أقرب ما يمكن أن نضعه على الطريق للسلاسة المطلقة. سقف النجوم المضيء، والغياب شبه التام لضوضاء الطريق، وجودة قيادة تصفها رولز رويس حرفياً بـ'السجادة السحرية'، تجعل كل رحلة تشعر وكأنها المناسبة نفسها، لا مجرد وسيلة للوصول إليها.\n\nنخصصها للأعراس، والوصول على السجادة الحمراء، وحجوزات VIP حيث تكون السيارة نفسها جزءاً من اللحظة — وتوضع سيارة احتياطية جاهزة كإجراء معتاد لكل حجز غوست دون أي رسوم إضافية.",
+    },
+    idealFor: {
+      en: "Weddings, red-carpet arrivals, and once-in-a-lifetime occasions.",
+      ar: "الأعراس والوصول على السجادة الحمراء والمناسبات التي لا تتكرر.",
+    },
+    highlights: {
+      en: ["Starlight headliner", "Magic carpet ride quality", "Complimentary backup vehicle on VIP bookings", "Bespoke interior detailing"],
+      ar: ["سقف النجوم المضيء", "جودة قيادة السجادة السحرية", "سيارة احتياطية مجانية لحجوزات VIP", "تفاصيل داخلية مخصصة"],
+    },
   },
   {
     slug: "range-rover-autobiography",
@@ -74,6 +111,18 @@ export const FLEET = [
       power: { en: "523 HP", ar: "523 حصان" },
       seats: { en: "5 Seats", ar: "5 مقاعد" },
       feature: { en: "Executive Class Seating", ar: "مقاعد الدرجة التنفيذية" },
+    },
+    long: {
+      en: "The Autobiography gives you SUV command of the road — higher seating, effortless visibility over Dubai traffic — without giving up an inch of luxury sedan comfort inside. Executive-class rear seating, a raised ride height that handles speed bumps and villa driveways without complaint, and enough road presence to anchor a wedding convoy or a VIP arrival.\n\nIt's the vehicle most requested by clients staying in villa communities, where a lower sedan can struggle with unpaved sections or steep driveway approaches.",
+      ar: "توفر أوتوبيوغرافي سيطرة سيارة الدفع الرباعي على الطريق — جلوس أعلى ورؤية سهلة فوق ازدحام دبي — دون التنازل عن أي قدر من راحة السيدان الفاخرة في الداخل. مقاعد خلفية بمستوى الدرجة التنفيذية، وارتفاع قيادة مرفوع يتعامل مع المطبات الاصطناعية وممرات الفلل دون أي مشكلة، وحضور كافٍ على الطريق ليتصدر قافلة زفاف أو وصول VIP.\n\nإنها السيارة الأكثر طلباً من العملاء المقيمين في المجتمعات السكنية ذات الفلل، حيث قد تواجه سيارة السيدان الأقل ارتفاعاً صعوبة في الأقسام غير المعبدة أو ممرات الدخول شديدة الانحدار.",
+    },
+    idealFor: {
+      en: "Villa pickups, wedding convoys, and clients who want SUV presence without losing rear-seat comfort.",
+      ar: "استقبالات الفلل وقوافل الأعراس والعملاء الراغبين بحضور سيارة الدفع الرباعي دون فقدان راحة المقعد الخلفي.",
+    },
+    highlights: {
+      en: ["Executive-class rear seating", "Raised ride height for villa driveways", "Commanding road presence", "Ideal for convoy lead vehicle"],
+      ar: ["مقاعد خلفية بمستوى تنفيذي", "ارتفاع قيادة مناسب لممرات الفلل", "حضور طاغٍ على الطريق", "مثالية كسيارة قيادة للقافلة"],
     },
   },
   {
@@ -88,6 +137,18 @@ export const FLEET = [
       seats: { en: "7 Seats", ar: "7 مقاعد" },
       feature: { en: "Curved OLED Display", ar: "شاشة OLED منحنية" },
     },
+    long: {
+      en: "The Escalade is the vehicle we bring when a group needs to move together without compromise — seven seats, a curved OLED display that turns the cabin into something closer to a private jet interior, and a bold enough exterior presence to make an entrance on its own.\n\nIt's a regular on airport runs for larger families and delegations, and doubles well as a spacious alternative to the V-Class when the group leans smaller but the luggage load is heavy.",
+      ar: "إسكاليد هي السيارة التي نُحضرها عندما تحتاج مجموعة للتنقل معاً دون أي تنازل — سبعة مقاعد، شاشة OLED منحنية تحوّل المقصورة إلى ما يشبه مقصورة طائرة خاصة، وحضور خارجي جريء كافٍ لصنع دخول مميز بحد ذاته.\n\nإنها حاضرة بانتظام في رحلات المطار للعائلات الكبيرة والوفود، وتُعد بديلاً واسعاً جيداً عن V كلاس عندما تكون المجموعة أصغر لكن حمولة الأمتعة كبيرة.",
+    },
+    idealFor: {
+      en: "Large families, delegations, and airport runs with heavy luggage.",
+      ar: "العائلات الكبيرة والوفود ورحلات المطار ذات الأمتعة الكثيرة.",
+    },
+    highlights: {
+      en: ["Seats up to 7", "Curved OLED cabin display", "Bold exterior road presence", "Generous luggage capacity"],
+      ar: ["تتسع حتى 7 ركاب", "شاشة مقصورة OLED منحنية", "حضور خارجي جريء على الطريق", "سعة أمتعة واسعة"],
+    },
   },
   {
     slug: "mercedes-v-class",
@@ -100,6 +161,18 @@ export const FLEET = [
       power: { en: "237 HP", ar: "237 حصان" },
       seats: { en: "6 Seats", ar: "6 مقاعد" },
       feature: { en: "Conference Seating", ar: "مقاعد اجتماعات" },
+    },
+    long: {
+      en: "The V-Class VIP is less a van than a boardroom that happens to move — face-to-face conference seating, a table, and enough cabin space to run an actual meeting between stops rather than just sit through the drive.\n\nIt's the standard choice for multi-executive corporate transfers and small delegations who need to prep, debrief, or simply work as a group between appointments, and it converts easily for airport runs when the group is six or fewer with moderate luggage.",
+      ar: "V كلاس VIP أقرب إلى قاعة اجتماعات متنقلة منها إلى فان عادي — مقاعد اجتماعات متقابلة، وطاولة، ومساحة مقصورة كافية لعقد اجتماع فعلي بين المحطات بدلاً من مجرد الجلوس خلال الرحلة.\n\nإنها الخيار المعتاد لتنقلات المديرين التنفيذيين المتعددين والوفود الصغيرة التي تحتاج للتحضير أو المراجعة أو ببساطة العمل كمجموعة بين المواعيد، وتتحول بسهولة لرحلات المطار عندما يكون عدد المجموعة ستة أو أقل مع أمتعة معتدلة.",
+    },
+    idealFor: {
+      en: "Multi-executive delegations who need to work or meet between stops.",
+      ar: "الوفود المتعددة التنفيذيين الراغبة بالعمل أو الاجتماع بين المحطات.",
+    },
+    highlights: {
+      en: ["Face-to-face conference seating", "Onboard table", "Seats up to 6", "Quiet cabin for calls or meetings"],
+      ar: ["مقاعد اجتماعات متقابلة", "طاولة داخل المقصورة", "تتسع حتى 6 ركاب", "مقصورة هادئة للمكالمات أو الاجتماعات"],
     },
   },
 ];
@@ -239,6 +312,154 @@ export const SERVICES = [
     },
   },
 ];
+
+/* ─── AREAS WE SERVE (location pages) ───────────────────────── */
+export const AREAS = [
+  {
+    slug: "business-bay",
+    icon: Building2,
+    image: {
+      src: "https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=1600&q=80",
+      position: "50% 40%",
+      scale: 1,
+    },
+    name: { en: "Business Bay", ar: "الخليج التجاري" },
+    tagline: { en: "Our Home District", ar: "حينا الرئيسي" },
+    intro: {
+      en: "Business Bay is where LuxeGlide Elite is based, and it's the district we know best — the canal-side towers, the Exchange Tower service entrances, the fastest way onto Sheikh Zayed Road at any hour. As Dubai's central business corridor, it's a constant flow of morning meetings, late finance calls, and evening dinners along the waterfront promenade.\n\nBecause our office sits inside it, Business Bay bookings get our shortest response times — a chauffeur can usually be at your tower's lobby within minutes, not hours. It's the natural starting point for hourly bookings, corporate accounts, and same-day requests.",
+      ar: "الخليج التجاري هو مقر لكس غلايد إيليت، وهو الحي الذي نعرفه الأفضل — الأبراج المطلة على القناة، مداخل خدمة برج التبادل، وأسرع طريق للوصول إلى شارع الشيخ زايد في أي وقت. بصفته الممر التجاري المركزي في دبي، يشهد الحي تدفقاً مستمراً من اجتماعات الصباح ومكالمات المال المسائية وعشاءات على الممشى المطل على القناة.\n\nولأن مكتبنا يقع داخله، تحظى حجوزات الخليج التجاري بأسرع وقت استجابة لدينا — يمكن لسائقنا الوصول إلى ردهة برجك خلال دقائق لا ساعات. إنه نقطة الانطلاق الطبيعية للحجوزات بالساعة والحسابات المؤسسية والطلبات في نفس اليوم.",
+    },
+    landmarks: {
+      en: ["Bay Avenue", "Dubai Water Canal promenade", "Exchange Tower", "JW Marriott Marquis"],
+      ar: ["باي أفينيو", "ممشى قناة دبي المائية", "برج التبادل", "فندق جي دبليو ماريوت ماركيز"],
+    },
+    relatedServices: ["hourly-chauffeur", "corporate-travel"],
+  },
+  {
+    slug: "downtown-dubai",
+    icon: Landmark,
+    image: {
+      src: "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=1600&q=80",
+      position: "50% 45%",
+      scale: 1,
+    },
+    name: { en: "Downtown Dubai", ar: "وسط مدينة دبي" },
+    tagline: { en: "Burj Khalifa & Dubai Mall", ar: "برج خليفة ودبي مول" },
+    intro: {
+      en: "Downtown Dubai is the address most visitors picture when they imagine the city — the Burj Khalifa, the Dubai Fountain, the Opera District, and the endless valet lines outside Dubai Mall. It's dense, dramatic, and often gridlocked around fountain-show hours, which is exactly where a chauffeur who knows the service roads and timing earns their keep.\n\nWe run city tours, dinner transfers, and event pickups through Downtown constantly, timing arrivals around the fountain shows and avoiding the worst of the valet queues. For a first visit to Dubai, this is usually the district clients ask to be based near.",
+      ar: "وسط مدينة دبي هو العنوان الذي يتخيله معظم الزوار عند التفكير بالمدينة — برج خليفة، نافورة دبي، حي الأوبرا، وطوابير صف السيارات التي لا تنتهي أمام دبي مول. إنه حي كثيف ومبهر وغالباً ما يشهد ازدحاماً حول أوقات عروض النافورة، وهنا بالتحديد يُثبت السائق الذي يعرف طرق الخدمة والتوقيت قيمته.\n\nننظم جولات المدينة وتوصيلات العشاء واستقبال الفعاليات عبر وسط المدينة باستمرار، مع ضبط أوقات الوصول حول عروض النافورة وتجنب أسوأ طوابير صف السيارات. لأول زيارة إلى دبي، هذا عادة هو الحي الذي يطلب العملاء الإقامة بالقرب منه.",
+    },
+    landmarks: {
+      en: ["Burj Khalifa", "The Dubai Fountain", "Dubai Mall", "Dubai Opera"],
+      ar: ["برج خليفة", "نافورة دبي", "دبي مول", "دار أوبرا دبي"],
+    },
+    relatedServices: ["city-tours", "vip-services"],
+  },
+  {
+    slug: "difc",
+    icon: Building2,
+    image: {
+      src: "https://images.unsplash.com/photo-1546412414-8035e1776c9a?w=1600&q=80",
+      position: "50% 40%",
+      scale: 1,
+    },
+    name: { en: "DIFC", ar: "مركز دبي المالي العالمي" },
+    tagline: { en: "Dubai International Financial Centre", ar: "الوجهة المالية الأولى" },
+    intro: {
+      en: "DIFC is Dubai's financial and legal heart — Gate Avenue, the region's largest banks, and a growing cluster of hedge funds and family offices that moved in over the last few years. It's a district where discretion and punctuality aren't a nice-to-have, they're the baseline expectation.\n\nWe handle a steady stream of back-to-back meeting transfers here, plus airport runs for visiting partners and investors. Chauffeurs working DIFC routes are briefed on building-specific drop-off protocols, since several towers restrict curbside access during business hours.",
+      ar: "مركز دبي المالي العالمي هو القلب المالي والقانوني لدبي — جيت أفينيو، أكبر البنوك في المنطقة، وتجمّع متنامٍ من صناديق التحوط ومكاتب العائلات التي انتقلت إليه خلال السنوات الأخيرة. إنه حي لا يُعتبر فيه التكتم والدقة في المواعيد أمراً إضافياً، بل هو الحد الأدنى المتوقع.\n\nندير هنا سلسلة مستمرة من تنقلات الاجتماعات المتتالية، إضافة إلى رحلات المطار للشركاء والمستثمرين الزائرين. السائقون العاملون على مسارات مركز دبي المالي مطلعون على بروتوكولات التوصيل الخاصة بكل برج، إذ تفرض عدة أبراج قيوداً على الوصول من الرصيف خلال ساعات العمل.",
+    },
+    landmarks: {
+      en: ["Gate Avenue", "Emirates Towers", "Museum of the Future", "The Ritz-Carlton DIFC"],
+      ar: ["جيت أفينيو", "أبراج الإمارات", "متحف المستقبل", "فندق ريتز كارلتون مركز دبي المالي"],
+    },
+    relatedServices: ["corporate-travel", "hourly-chauffeur"],
+  },
+  {
+    slug: "palm-jumeirah",
+    icon: Waves,
+    image: {
+      src: "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1600&q=80",
+      position: "50% 45%",
+      scale: 1,
+    },
+    name: { en: "Palm Jumeirah", ar: "نخلة جميرا" },
+    tagline: { en: "Resorts & Beachfront Villas", ar: "المنتجعات والفلل الساحلية" },
+    intro: {
+      en: "Palm Jumeirah is its own small world — a single trunk road out to a fan of fronds lined with beachfront villas and resort hotels, from Atlantis at the crescent to the newer towers along the trunk. Traffic onto and off the island funnels through one route, so timing matters more here than almost anywhere else in Dubai.\n\nWe run wedding transport, resort transfers, and evening dinner bookings out to the Palm regularly, and build in buffer time for the trunk road at peak hours. For villa pickups, our chauffeurs coordinate gate codes and access in advance so you're never waiting curbside.",
+      ar: "نخلة جميرا عالم صغير قائم بذاته — طريق جذع واحد يمتد إلى سعف مصطف بالفلل الساحلية والفنادق المنتجعية، من أتلانتس عند الهلال إلى الأبراج الأحدث على طول الجذع. تتجمع حركة الدخول والخروج من الجزيرة عبر طريق واحد، لذا يصبح التوقيت هنا أكثر أهمية من أي مكان آخر في دبي تقريباً.\n\nننظم نقل حفلات الزفاف وتوصيلات المنتجعات وحجوزات عشاء المساء إلى النخلة بانتظام، مع مراعاة وقت إضافي لطريق الجذع في أوقات الذروة. لاستقبالات الفلل، ينسّق سائقونا رموز البوابات وطرق الوصول مسبقاً حتى لا تنتظر عند الرصيف أبداً.",
+    },
+    landmarks: {
+      en: ["Atlantis The Palm", "The Pointe", "Nakheel Mall", "Palm West Beach"],
+      ar: ["أتلانتس النخلة", "ذا بوينت", "نخيل مول", "شاطئ بالم ويست"],
+    },
+    relatedServices: ["vip-services", "city-tours"],
+  },
+  {
+    slug: "dubai-marina",
+    icon: Waves,
+    image: {
+      src: "https://images.unsplash.com/photo-1528702748617-c64d49f918af?w=1600&q=80",
+      position: "50% 42%",
+      scale: 1,
+    },
+    name: { en: "Dubai Marina", ar: "دبي مارينا" },
+    tagline: { en: "Marina Walk & JBR", ar: "ممشى المارينا وجميرا بيتش ريزيدنس" },
+    intro: {
+      en: "Dubai Marina and JBR are where residential towers meet the beach — Marina Walk, the yacht clubs, and a beachfront promenade that stays busy well into the night. It's one of the most photographed skylines in Dubai, and one of the most popular pickup points for city tours that continue on toward the Palm or Downtown.\n\nWe know the marina's internal loop roads well enough to avoid the worst of the weekend congestion, and we regularly coordinate yacht-day transfers and dinner bookings along the walk for both residents and visiting guests staying in the towers.",
+      ar: "دبي مارينا وجميرا بيتش ريزيدنس هما حيث تلتقي الأبراج السكنية بالشاطئ — ممشى المارينا، والنوادي البحرية، وواجهة بحرية تبقى نشطة حتى ساعات متأخرة من الليل. إنها إحدى أكثر خطوط الأفق تصويراً في دبي، وأحد أكثر نقاط الانطلاق شيوعاً لجولات المدينة المتجهة نحو النخلة أو وسط المدينة.\n\nنعرف طرق المارينا الداخلية جيداً بما يكفي لتجنب أسوأ ازدحام عطلة نهاية الأسبوع، وننسّق بانتظام تنقلات أيام اليخوت وحجوزات العشاء على طول الممشى لكل من المقيمين والضيوف الزائرين المقيمين في الأبراج.",
+    },
+    landmarks: {
+      en: ["Marina Walk", "JBR — The Beach", "Dubai Marina Mall", "Skydive Dubai"],
+      ar: ["ممشى المارينا", "جميرا بيتش ريزيدنس - ذا بيتش", "دبي مارينا مول", "سكاي دايف دبي"],
+    },
+    relatedServices: ["city-tours", "group-transport"],
+  },
+  {
+    slug: "dubai-airport",
+    icon: PlaneTakeoff,
+    image: {
+      src: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=80",
+      position: "50% 45%",
+      scale: 1,
+    },
+    name: { en: "Dubai Airport (DXB)", ar: "مطار دبي الدولي" },
+    tagline: { en: "Terminals 1, 2 & 3", ar: "المبنى 1 و2 و3" },
+    intro: {
+      en: "DXB is one of the busiest airports on earth, and its three terminals each behave differently — Terminal 3's long Emirates concourses, Terminal 1's tighter arrivals hall, and Terminal 2's smaller, quicker flow. Knowing which terminal your flight lands at, and where the meet & greet point actually is inside it, is most of what separates a smooth arrival from a stressful one.\n\nWe track every flight from takeoff, so delays and early landings never catch us out, and our chauffeurs meet arriving guests inside the terminal rather than at a distant curb. The same applies in reverse for departures — we build in buffer for the drive in and the security queue, so you're never rushed at check-in.",
+      ar: "مطار دبي الدولي هو أحد أكثر المطارات ازدحاماً في العالم، وتتصرف مبانيه الثلاثة بشكل مختلف — أروقة طيران الإمارات الطويلة في المبنى 3، وصالة وصول أضيق في المبنى 1، وتدفق أصغر وأسرع في المبنى 2. معرفة المبنى الذي ستهبط فيه رحلتك، ومكان نقطة الاستقبال الفعلية بداخله، هو معظم ما يفرّق بين وصول سلس وآخر مرهق.\n\nنتابع كل رحلة منذ الإقلاع، فلا يفاجئنا التأخير أو الهبوط المبكر أبداً، ويستقبل سائقونا الضيوف داخل صالة المطار وليس عند رصيف بعيد. ينطبق الأمر ذاته عكسياً عند المغادرة — نراعي وقتاً إضافياً للطريق ولطابور الأمن، حتى لا تكون مستعجلاً عند تسجيل الوصول.",
+    },
+    landmarks: {
+      en: ["Terminal 1 (Concourse D)", "Terminal 2", "Terminal 3 (Emirates)", "DXB Arrivals Meet & Greet"],
+      ar: ["المبنى 1 (الرواق دي)", "المبنى 2", "المبنى 3 (طيران الإمارات)", "نقطة استقبال الوصول"],
+    },
+    relatedServices: ["airport-transfers", "vip-services"],
+  },
+];
+
+/* ─── HOMEPAGE FAQ ───────────────────────────────────────────── */
+export const HOME_FAQ = {
+  en: {
+    tag: "FAQ",
+    title: "Before You Book",
+    items: [
+      { q: "Is LuxeGlide Elite a licensed chauffeur service?", a: "Yes — every vehicle and chauffeur is fully licensed and insured under UAE regulations, and the fleet is GPS-tracked for every journey." },
+      { q: "Which parts of Dubai do you cover?", a: "All of it, with dedicated local knowledge in Business Bay, Downtown Dubai, DIFC, Palm Jumeirah, Dubai Marina, and Dubai Airport. Inter-emirate transfers across the UAE can also be arranged." },
+      { q: "How much does an hourly chauffeur cost?", a: "Pricing depends on vehicle class and booking length — hourly bookings start at a 3-hour minimum. Send your details via WhatsApp for a same-day quote." },
+      { q: "Can I book a chauffeur for later today?", a: "Usually, yes. Most bookings are confirmed within minutes during business hours; for VIP events or multi-vehicle bookings we recommend at least 48 hours' notice." },
+    ],
+  },
+  ar: {
+    tag: "الأسئلة الشائعة",
+    title: "قبل أن تحجز",
+    items: [
+      { q: "هل لكس غلايد إيليت خدمة سائق مرخّصة؟", a: "نعم — كل سيارة وسائق مرخّصان ومؤمّنان بالكامل وفق أنظمة دولة الإمارات، ويخضع الأسطول للتتبع عبر GPS في كل رحلة." },
+      { q: "ما هي مناطق دبي التي تغطونها؟", a: "كل دبي، مع معرفة محلية متخصصة في الخليج التجاري، وسط المدينة، مركز دبي المالي العالمي، نخلة جميرا، دبي مارينا، ومطار دبي. يمكن أيضاً ترتيب تنقلات بين الإمارات." },
+      { q: "كم تكلفة السائق بالساعة؟", a: "يعتمد السعر على فئة السيارة ومدة الحجز — يبدأ الحجز بالساعة بحد أدنى 3 ساعات. أرسل تفاصيلك عبر واتساب للحصول على عرض سعر في نفس اليوم." },
+      { q: "هل يمكنني حجز سائق لاحقاً اليوم؟", a: "غالباً نعم. تُؤكَّد معظم الحجوزات خلال دقائق أثناء ساعات العمل؛ أما لفعاليات VIP أو الحجوزات متعددة السيارات فننصح بالحجز قبل 48 ساعة على الأقل." },
+    ],
+  },
+};
 
 /* ─── TESTIMONIALS ───────────────────────────────────────────── */
 export const TESTIMONIALS = [
@@ -495,6 +716,13 @@ export const LANG = {
     fleetTitle: "A Fleet Fit for Every Occasion",
     fleetSub: "Six vehicle classes, one uncompromising standard of care and presentation.",
     enquire: "Enquire",
+    areasTag: "AREAS WE SERVE",
+    areasTitle: "Local Knowledge, Citywide",
+    areasSub: "Dedicated chauffeur coverage across Dubai's key districts — from Business Bay to the Palm.",
+    viewArea: "Explore Area",
+    landmarksLabel: "Landmarks Nearby",
+    popularServicesLabel: "Popular Services Here",
+    areasFooterLabel: "Areas We Serve",
     galleryTag: "GALLERY & CLIENTS",
     galleryTitle: "Moments, Curated",
     gallerySub: "A glimpse into the fleet, the events, and the journeys we're trusted with.",
@@ -556,6 +784,13 @@ export const LANG = {
     fleetTitle: "أسطول يليق بكل مناسبة",
     fleetSub: "ست فئات من المركبات، بمعيار واحد لا يساوم على العناية والتقديم.",
     enquire: "استفسر الآن",
+    areasTag: "مناطق تغطيتنا",
+    areasTitle: "معرفة محلية في كل أنحاء المدينة",
+    areasSub: "تغطية سائقين مخصصة في أهم أحياء دبي — من الخليج التجاري إلى النخلة.",
+    viewArea: "استكشف المنطقة",
+    landmarksLabel: "معالم قريبة",
+    popularServicesLabel: "الخدمات الأكثر طلباً هنا",
+    areasFooterLabel: "مناطق تغطيتنا",
     galleryTag: "المعرض والعملاء",
     galleryTitle: "لحظات منتقاة بعناية",
     gallerySub: "لمحة عن الأسطول والفعاليات والرحلات التي وثق بنا عملاؤنا لأجلها.",

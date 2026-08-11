@@ -30,24 +30,26 @@ export function FleetPreview() {
             <motion.div key={car.slug} className="fleet-card"
               initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }}
               transition={{ delay: i * .18, duration: .9 }}>
-              <div className="fleet-media">
-                <Image
-                  src={car.image.src}
-                  alt={car.name[lang]}
-                  fill
-                  sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-                  style={{ objectFit: "cover", objectPosition: car.image.position, transform: `scale(${car.image.scale})` }}
-                />
-                <div className={fb} style={{
-                  position: "absolute", top: 14, [isRTL ? "right" : "left"]: 14,
-                  fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--gold)",
-                  background: "rgba(7,7,7,.6)", border: "1px solid rgba(214,180,113,.3)", borderRadius: 999, padding: "4px 10px",
-                }}>{car.category[lang]}</div>
-              </div>
-              <div className="fleet-body" style={{ textAlign: isRTL ? "right" : "left" }}>
-                <div className={fb} style={{ fontSize: 9, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 6 }}>{car.tagline[lang]}</div>
-                <div className={fd} style={{ fontSize: 20, fontWeight: 500, color: "var(--off)" }}>{car.name[lang]}</div>
-              </div>
+              <Link href={`/fleet/${car.slug}`} style={{ textDecoration: "none", display: "block" }}>
+                <div className="fleet-media">
+                  <Image
+                    src={car.image.src}
+                    alt={car.name[lang]}
+                    fill
+                    sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                    style={{ objectFit: "cover", objectPosition: car.image.position, transform: `scale(${car.image.scale})` }}
+                  />
+                  <div className={fb} style={{
+                    position: "absolute", top: 14, [isRTL ? "right" : "left"]: 14,
+                    fontSize: 9, letterSpacing: ".12em", textTransform: "uppercase", color: "var(--gold)",
+                    background: "rgba(7,7,7,.6)", border: "1px solid rgba(214,180,113,.3)", borderRadius: 999, padding: "4px 10px",
+                  }}>{car.category[lang]}</div>
+                </div>
+                <div className="fleet-body" style={{ textAlign: isRTL ? "right" : "left" }}>
+                  <div className={fb} style={{ fontSize: 9, letterSpacing: ".2em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 6 }}>{car.tagline[lang]}</div>
+                  <div className={fd} style={{ fontSize: 20, fontWeight: 500, color: "var(--off)" }}>{car.name[lang]}</div>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>

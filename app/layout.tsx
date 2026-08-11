@@ -6,6 +6,7 @@ import { PageLoader } from "@/components/PageLoader";
 import { PageTransition } from "@/components/PageTransition";
 import { CustomCursor } from "@/components/CustomCursor";
 import { globalStyles } from "@/components/Styles/Styles";
+import { PHONE, EMAIL, ADDRESS, SOCIAL_LINKS } from "@/components/lib/Constants";
 
 const siteTitle = "LuxeGlide Elite | Premium Chauffeur Services in Dubai";
 const siteDescription =
@@ -33,6 +34,33 @@ export const metadata: Metadata = {
   },
 };
 
+const businessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TaxiService",
+  "@id": "https://luxeglideelite.ae/#business",
+  name: "LuxeGlide Elite",
+  image: "https://luxeglideelite.ae/images/logo.png",
+  url: "https://luxeglideelite.ae/",
+  telephone: PHONE,
+  email: EMAIL,
+  priceRange: "$$$",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: ADDRESS.en,
+    addressLocality: "Dubai",
+    addressCountry: "AE",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 25.1857, longitude: 55.262 },
+  areaServed: { "@type": "City", name: "Dubai" },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    opens: "00:00",
+    closes: "23:59",
+  },
+  sameAs: Object.values(SOCIAL_LINKS),
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -40,6 +68,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
         />
       </head>
       <body>

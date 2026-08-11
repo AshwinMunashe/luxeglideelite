@@ -29,5 +29,27 @@ export default async function ServiceDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  return <ServiceDetailClient slug={slug} />;
+  const svc = SERVICES.find((s) => s.slug === slug);
+
+  const serviceJsonLd = svc && {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: svc.title.en,
+    description: svc.desc.en,
+    url: `https://luxeglideelite.ae/services/${svc.slug}`,
+    provider: { "@id": "https://luxeglideelite.ae/#business" },
+    areaServed: { "@type": "City", name: "Dubai" },
+  };
+
+  return (
+    <>
+      {serviceJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        />
+      )}
+      <ServiceDetailClient slug={slug} />
+    </>
+  );
 }

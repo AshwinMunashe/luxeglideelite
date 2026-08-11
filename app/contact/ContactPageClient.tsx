@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, ChevronDown } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { LANG, SERVICES, CONTACT_PAGE, PHONE, WHATSAPP, EMAIL, ADDRESS, MAPS_URL } from "@/components/lib/Constants";
@@ -23,6 +23,7 @@ export function ContactPageClient() {
   const [service, setService] = useState("");
   const [date, setDate] = useState("");
   const [message, setMessage] = useState("");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const inputStyle: React.CSSProperties = {
     width: "100%", padding: "12px 14px", borderRadius: 10,
@@ -160,15 +161,45 @@ export function ContactPageClient() {
             <div className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{c.faqTag}</div>
             <h2 className={fd} style={{ fontSize: "clamp(26px,3vw,40px)", fontWeight: 400, fontStyle: lang === "ar" ? "normal" : "italic", color: "var(--off)" }}>{c.faqTitle}</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="testimonial-grid">
-            {c.faq.map((f, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }}
-                transition={{ delay: i * .14, duration: .8 }}
-                style={{ background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.07)", borderRadius: 14, padding: "20px 22px", textAlign: isRTL ? "right" : "left" }}>
-                <div className={fd} style={{ fontSize: 16, fontWeight: 500, color: "var(--gold-lt)", marginBottom: 8 }}>{f.q}</div>
-                <div className={fb} style={{ fontSize: 12.5, color: "var(--muted)", lineHeight: 1.8, fontWeight: 300 }}>{f.a}</div>
-              </motion.div>
-            ))}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 16 }}>
+            {c.faq.map((f, i) => {
+              const isOpen = openFaq === i;
+              return (
+                <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }}
+                  transition={{ delay: i * .14, duration: .8 }}
+                  style={{ background: "rgba(255,255,255,.02)", border: "1px solid rgba(255,255,255,.07)", borderRadius: 14, overflow: "hidden" }}>
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    className={fd}
+                    style={{
+                      width: "100%", background: "transparent", border: "none", cursor: "pointer",
+                      padding: "20px 22px", fontSize: 16, fontWeight: 500, color: "var(--gold-lt)",
+                      display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12,
+                      textAlign: isRTL ? "right" : "left", flexDirection: isRTL ? "row-reverse" : "row",
+                    }}
+                  >
+                    {f.q}
+                    <ChevronDown
+                      size={16}
+                      style={{
+                        flexShrink: 0, color: "var(--gold)",
+                        transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                        transition: "transform .3s ease",
+                      }}
+                    />
+                  </button>
+                  <div style={{ display: "grid", gridTemplateRows: isOpen ? "1fr" : "0fr", transition: "grid-template-rows .35s ease" }}>
+                    <div style={{ overflow: "hidden" }}>
+                      <div className={fb} style={{
+                        fontSize: 12.5, color: "var(--muted)", lineHeight: 1.8, fontWeight: 300,
+                        padding: "0 22px 20px", textAlign: isRTL ? "right" : "left",
+                      }}>{f.a}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

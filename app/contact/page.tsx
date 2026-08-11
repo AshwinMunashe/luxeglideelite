@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CONTACT_PAGE } from "@/components/lib/Constants";
 import { ContactPageClient } from "./ContactPageClient";
 
 export const metadata: Metadata = {
@@ -9,6 +10,24 @@ export const metadata: Metadata = {
   openGraph: { title: "Contact LuxeGlide Elite", url: "https://luxeglideelite.ae/contact" },
 };
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: CONTACT_PAGE.en.faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function ContactPage() {
-  return <ContactPageClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <ContactPageClient />
+    </>
+  );
 }

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Phone, MessageCircle, Mail, MapPin } from "lucide-react";
-import { LANG, SERVICES, PHONE, WHATSAPP, EMAIL, ADDRESS, MAPS_URL } from "./lib/Constants";
+import { LANG, SERVICES, AREAS, PHONE, WHATSAPP, EMAIL, ADDRESS, MAPS_URL } from "./lib/Constants";
 import { useLang } from "./LangContext";
 
 export function Footer() {
@@ -27,7 +27,7 @@ export function Footer() {
       }} />
 
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "64px clamp(16px,4vw,80px) 36px", position: "relative" }}>
-        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr 1fr 1.2fr", gap: 40, marginBottom: 48 }}>
+        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr .85fr .85fr .85fr 1.05fr", gap: 32, marginBottom: 48 }}>
           {/* brand */}
           <div style={{ textAlign: isRTL ? "right" : "left" }}>
             <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
@@ -64,6 +64,20 @@ export function Footer() {
                 onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
                 onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,240,232,.45)")}>
                 {svc.title[lang]}
+              </Link>
+            ))}
+          </div>
+
+          {/* areas */}
+          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+            <div className={fb} style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 14 }}>
+              {t.areasFooterLabel}
+            </div>
+            {AREAS.map((area) => (
+              <Link key={area.slug} href={`/areas/${area.slug}`} className={fb} style={linkStyle}
+                onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,240,232,.45)")}>
+                {area.name[lang]}
               </Link>
             ))}
           </div>
