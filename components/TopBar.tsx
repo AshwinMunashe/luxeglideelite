@@ -3,7 +3,7 @@
 import { Mail, Phone } from "lucide-react";
 import { PHONE, EMAIL, SOCIAL_LINKS } from "./lib/Constants";
 import { useLang } from "./LangContext";
-import { InstagramIcon, FacebookIcon, LinkedInIcon, TikTokIcon } from "./SocialIcons";
+import { InstagramIcon, FacebookIcon, LinkedInIcon, TikTokIcon, YouTubeIcon } from "./SocialIcons";
 
 export function TopBar() {
   const { lang } = useLang();
@@ -23,6 +23,7 @@ export function TopBar() {
       <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FacebookIcon size={14} /></a>
       <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon size={14} /></a>
       <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"><TikTokIcon size={14} /></a>
+      <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><YouTubeIcon size={14} /></a>
     </div>
   );
 

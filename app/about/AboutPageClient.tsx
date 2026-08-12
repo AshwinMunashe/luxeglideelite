@@ -52,7 +52,8 @@ export function AboutPageClient() {
             style={{ textAlign: isRTL ? "right" : "left" }}>
             <motion.h2 variants={fadeUp} className={fd} style={{ fontSize: "clamp(26px,3vw,40px)", fontWeight: lang === "ar" ? 600 : 500, color: "#111", lineHeight: 1.15, marginBottom: 20 }}>{a.storyTitle}</motion.h2>
             <motion.p variants={fadeUp} className={fb} style={{ fontSize: 14, color: "#555", lineHeight: 1.9, fontWeight: 300, marginBottom: 16 }}>{a.storyP1}</motion.p>
-            <motion.p variants={fadeUp} className={fb} style={{ fontSize: 14, color: "#555", lineHeight: 1.9, fontWeight: 300 }}>{a.storyP2}</motion.p>
+            <motion.p variants={fadeUp} className={fb} style={{ fontSize: 14, color: "#555", lineHeight: 1.9, fontWeight: 300, marginBottom: 16 }}>{a.storyP2}</motion.p>
+            <motion.p variants={fadeUp} className={fb} style={{ fontSize: 14, color: "#555", lineHeight: 1.9, fontWeight: 300 }}>{a.storyP3}</motion.p>
             <motion.div variants={fadeUp} style={{ display: "flex", gap: 32, marginTop: 32, justifyContent: isRTL ? "flex-end" : "flex-start" }}>
               {t.stats.map((s, i) => (
                 <div key={i} style={{ textAlign: isRTL ? "right" : "left" }}>
@@ -62,6 +63,44 @@ export function AboutPageClient() {
               ))}
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* fleet & team */}
+      <section className="section-pad" style={{ padding: "90px clamp(24px,5vw,80px)", background: "var(--black)" }} dir={t.dir}>
+        <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, maxWidth: 1200, margin: "0 auto", alignItems: "center" }}>
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}
+            style={{ textAlign: isRTL ? "right" : "left" }}>
+            <motion.div variants={fadeUp} className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{a.fleetTeamTag}</motion.div>
+            <motion.h2 variants={fadeUp} className={fd} style={{ fontSize: "clamp(24px,3vw,38px)", fontWeight: 400, fontStyle: lang === "ar" ? "normal" : "italic", color: "var(--off)", marginBottom: 22 }}>{a.fleetTeamTitle}</motion.h2>
+            <motion.p variants={fadeUp} className={fb} style={{ fontSize: 14, color: "rgba(245,240,232,.7)", lineHeight: 1.95, fontWeight: 300, marginBottom: 18 }}>{a.fleetTeamP1}</motion.p>
+            <motion.p variants={fadeUp} className={fb} style={{ fontSize: 14, color: "rgba(245,240,232,.7)", lineHeight: 1.95, fontWeight: 300 }}>{a.fleetTeamP2}</motion.p>
+          </motion.div>
+          <motion.div className="pin-media" initial={{ opacity: 0, x: isRTL ? -40 : 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: .8 }}
+            style={{ borderRadius: 22, overflow: "hidden", height: 420, border: "1px solid rgba(214,180,113,.2)" }}>
+            <Image src="/images/cadillac-escalade.jpg" alt="LuxeGlide fleet vehicle detailed and ready" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover", objectPosition: "50% 35%" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(10,8,4,.05) 0%, rgba(10,8,4,.5) 100%)" }} />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* who we serve */}
+      <section className="section-pad" style={{ padding: "0 clamp(24px,5vw,80px) 90px", background: "var(--black)" }} dir={t.dir}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div className="gline" style={{ marginBottom: 60 }} />
+          <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+            <motion.div className="pin-media" initial={{ opacity: 0, x: isRTL ? 40 : -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: .8 }}
+              style={{ borderRadius: 22, overflow: "hidden", height: 420, border: "1px solid rgba(214,180,113,.2)" }}>
+              <Image src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=80" alt="LuxeGlide corporate and VIP clients" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: "cover", objectPosition: "50% 45%" }} />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, rgba(10,8,4,.05) 0%, rgba(10,8,4,.5) 100%)" }} />
+            </motion.div>
+            <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}
+              style={{ textAlign: isRTL ? "right" : "left" }}>
+              <motion.div variants={fadeUp} className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{a.whoWeServeTag}</motion.div>
+              <motion.h2 variants={fadeUp} className={fd} style={{ fontSize: "clamp(24px,3vw,38px)", fontWeight: 400, fontStyle: lang === "ar" ? "normal" : "italic", color: "var(--off)", marginBottom: 22 }}>{a.whoWeServeTitle}</motion.h2>
+              <motion.p variants={fadeUp} className={fb} style={{ fontSize: 14, color: "rgba(245,240,232,.7)", lineHeight: 1.95, fontWeight: 300 }}>{a.whoWeServeP1}</motion.p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -95,7 +134,8 @@ export function AboutPageClient() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} style={{ textAlign: "center", marginBottom: 52 }}>
             <motion.div variants={fadeUp} className={fb} style={{ fontSize: 9, letterSpacing: ".32em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 12 }}>{a.standardsTag}</motion.div>
-            <motion.h2 variants={fadeUp} className={fd} style={{ fontSize: "clamp(28px,3.5vw,46px)", fontWeight: 400, fontStyle: lang === "ar" ? "normal" : "italic", color: "var(--off)" }}>{a.standardsTitle}</motion.h2>
+            <motion.h2 variants={fadeUp} className={fd} style={{ fontSize: "clamp(28px,3.5vw,46px)", fontWeight: 400, fontStyle: lang === "ar" ? "normal" : "italic", color: "var(--off)", marginBottom: 20 }}>{a.standardsTitle}</motion.h2>
+            <motion.p variants={fadeUp} className={fb} style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.9, fontWeight: 300, maxWidth: 620, margin: "0 auto" }}>{a.standardsIntro}</motion.p>
           </motion.div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16 }} className="values-grid">
             {a.standards.map((v, i) => {

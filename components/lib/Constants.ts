@@ -15,12 +15,13 @@ export const ADDRESS = {
 };
 export const MAPS_URL = "https://maps.app.goo.gl/5ArcqpETDTJ6N1sT8";
 
-// placeholder handles — swap for the real profile URLs when they exist
 export const SOCIAL_LINKS = {
-  instagram: "https://instagram.com/luxeglideelite",
-  facebook: "https://facebook.com/luxeglideelite",
+  instagram: "https://www.instagram.com/luxeglideelite/",
+  facebook: "https://www.facebook.com/profile.php?id=61589823463289",
+  tiktok: "https://www.tiktok.com/@luxeglideelite?lang=en",
+  youtube: "https://www.youtube.com/@LuxeGlideElite",
+  // placeholder — swap for the real profile URL once the LinkedIn page exists
   linkedin: "https://linkedin.com/company/luxeglideelite",
-  tiktok: "https://tiktok.com/@luxeglideelite",
 };
 
 /* ─── FLEET ──────────────────────────────────────────────────── */
@@ -506,6 +507,14 @@ export const ABOUT_EXTRA = {
     storyTitle: "Where It Began",
     storyP1: "LuxeGlide Elite was founded on a simple observation: Dubai had no shortage of luxury cars, but very few services treated the journey itself as part of the luxury. We set out to change that.",
     storyP2: "We launched with a curated fleet and a small team of trusted chauffeurs trained to anticipate needs before they're spoken. We stayed intentionally small in ambition and large in standards — building slowly, on purpose.",
+    storyP3: "Today the fleet spans six vehicle classes — from the S-Class we send for a quiet airport transfer to the Ghost we reserve for a wedding day — and our chauffeurs carry local knowledge of six of Dubai's key districts, from Business Bay where our office sits to the trunk road onto Palm Jumeirah. Growth has stayed deliberate: we would rather turn down a booking outside our standard than stretch the team thin enough to miss one.",
+    fleetTeamTag: "FLEET & TEAM",
+    fleetTeamTitle: "Who's Behind the Wheel",
+    fleetTeamP1: "Every chauffeur joins after a formal background check and a probationary period spent shadowing a senior driver before taking a booking alone. Training covers defensive driving, the fastest legal routes through Dubai's traffic patterns at different times of day, and the kind of service hospitality teams call 'anticipatory' — reading when a passenger wants conversation and when they want silence, without being asked.",
+    fleetTeamP2: "The fleet itself is detailed before every single trip, not on a weekly schedule — interior wiped down, exterior washed, fuel topped up, and a final walk-around before the chauffeur leaves for pickup. Each vehicle carries comprehensive UAE motor insurance and is serviced on a schedule tighter than the manufacturer's minimum, because a car that looks flawless but drives roughly isn't actually flawless.",
+    whoWeServeTag: "WHO WE SERVE",
+    whoWeServeTitle: "Built Around Different Kinds of Trust",
+    whoWeServeP1: "Corporate accounts make up a steady share of our bookings — finance and legal teams in DIFC who need discretion as much as punctuality, and companies running multi-vehicle logistics for conferences or investor roadshows. Alongside that sits a smaller, more personal side of the business: wedding parties who need a Rolls-Royce dressed exactly right for one specific afternoon, and hotel concierge desks in Downtown and the Marina who call us when a guest needs something arranged on short notice. Different clients, same standard applied without exception.",
     valuesTag: "WHAT WE STAND FOR",
     valuesTitle: "Principles, Not Promises",
     values: [
@@ -516,6 +525,7 @@ export const ABOUT_EXTRA = {
     ],
     standardsTag: "OUR STANDARDS",
     standardsTitle: "Trust, Built Into Every Trip",
+    standardsIntro: "None of this is left to goodwill. Licensing, insurance, and vetting are policy, not promises, and every trip is logged so that if a client or their company ever needs proof of a journey — timing, route, chauffeur — it exists.",
     standards: [
       { icon: FileCheck, title: "Licensed & Insured", desc: "Every vehicle and chauffeur is fully licensed and insured under UAE regulations." },
       { icon: BadgeCheck, title: "Vetted Chauffeurs", desc: "Background-checked, professionally trained, and held to a strict dress and conduct code." },
@@ -537,6 +547,14 @@ export const ABOUT_EXTRA = {
     storyTitle: "من أين بدأنا",
     storyP1: "تأسست لكس غلايد إيليت على ملاحظة بسيطة: لا تنقص دبي السيارات الفاخرة، لكن خدمات قليلة تتعامل مع الرحلة نفسها كجزء من الفخامة. قررنا أن نغيّر ذلك.",
     storyP2: "انطلقنا بأسطول منتقى بعناية وفريق صغير من السائقين الموثوقين المدربين على تلبية الاحتياجات قبل أن تُذكر. بقينا متعمّدين في طموحنا الصغير ومعاييرنا الكبيرة — نبني بثبات وعن قصد.",
+    storyP3: "يمتد الأسطول اليوم عبر ست فئات من المركبات — من S كلاس التي نرسلها لتحويل مطار هادئ إلى الغوست التي نخصصها ليوم زفاف — ويحمل سائقونا معرفة محلية بستة من أهم أحياء دبي، من الخليج التجاري حيث يقع مكتبنا إلى طريق الجذع المؤدي إلى نخلة جميرا. بقي النمو متعمّداً: نفضّل رفض حجز خارج معاييرنا على تمديد الفريق لدرجة نُفوّت فيها حجزاً.",
+    fleetTeamTag: "الأسطول والفريق",
+    fleetTeamTitle: "من خلف المقود",
+    fleetTeamP1: "ينضم كل سائق بعد التحقق الرسمي من الخلفية وفترة تجريبية يقضيها في مرافقة سائق أقدم قبل تولي حجز بمفرده. يشمل التدريب القيادة الدفاعية، وأسرع المسارات القانونية عبر أنماط ازدحام دبي في أوقات مختلفة من اليوم، ونوع الخدمة الذي تسميه فرق الضيافة 'استباقية' — قراءة رغبة الراكب بالحديث أو الصمت دون أن يُسأل.",
+    fleetTeamP2: "يُجهَّز الأسطول قبل كل رحلة على حدة، لا وفق جدول أسبوعي — تنظيف داخلي، غسيل خارجي، تعبئة وقود، وجولة تفقد أخيرة قبل توجه السائق للاستقبال. تحمل كل سيارة تأميناً شاملاً وفق أنظمة الإمارات وتخضع لصيانة بجدول أكثر صرامة من الحد الأدنى الذي تحدده الشركة المصنعة، لأن السيارة التي تبدو مثالية لكنها تقود بخشونة ليست مثالية فعلاً.",
+    whoWeServeTag: "لمن نعمل",
+    whoWeServeTitle: "مبنيّون حول أنواع مختلفة من الثقة",
+    whoWeServeP1: "تشكّل الحسابات المؤسسية حصة ثابتة من حجوزاتنا — فرق مالية وقانونية في مركز دبي المالي العالمي تحتاج التكتم بقدر حاجتها للدقة في المواعيد، وشركات تدير لوجستيات أسطول متعدد للمؤتمرات أو جولات المستثمرين. إلى جانب ذلك جانب أكثر شخصية من العمل: أطراف أعراس تحتاج رولز رويس مُزينة بالشكل الصحيح تماماً لعصر يوم واحد محدد، ومكاتب استقبال فنادق في وسط المدينة والمارينا تتصل بنا عندما يحتاج ضيف ترتيباً بإشعار قصير. عملاء مختلفون، بمعيار واحد يُطبَّق دون استثناء.",
     valuesTag: "ما نؤمن به",
     valuesTitle: "مبادئ، لا وعود",
     values: [
@@ -547,6 +565,7 @@ export const ABOUT_EXTRA = {
     ],
     standardsTag: "معاييرنا",
     standardsTitle: "الثقة في كل رحلة",
+    standardsIntro: "لا شيء من هذا مبني على حسن النية. الترخيص والتأمين والتحقق من الخلفية سياسة، لا وعود، وتُسجَّل كل رحلة حتى إذا احتاج عميل أو شركته يوماً إثباتاً لرحلة — توقيتها، مسارها، سائقها — يكون موجوداً.",
     standards: [
       { icon: FileCheck, title: "مرخّصون ومؤمّنون", desc: "كل سيارة وسائق مرخصان ومؤمّنان بالكامل وفق أنظمة دولة الإمارات." },
       { icon: BadgeCheck, title: "سائقون موثوقون", desc: "خضعوا للتحقق من الخلفية وتدريب احترافي، ويلتزمون بمعايير صارمة في المظهر والسلوك." },

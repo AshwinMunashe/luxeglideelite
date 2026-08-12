@@ -54,3 +54,12 @@ export function TikTokIcon({ size = 16, className, style }: IconProps) {
     </svg>
   );
 }
+
+export function YouTubeIcon({ size = 16, className, style }: IconProps) {
+  return (
+    <svg width={size} height={size} className={className} style={style} {...base}>
+      <rect x="2" y="5" width="20" height="14" rx="4" />
+      <path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
