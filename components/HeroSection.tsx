@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 import { Phone, MessageCircle, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import { LANG, PHONE, WHATSAPP } from "./lib/Constants";
@@ -36,6 +35,7 @@ const PARTICLES = Array.from({ length: 30 }, (_, i) => ({
    swap, so there's no visible loading/black-frame moment mid-fade */
 const HERO_VIDEOS = ["/hero.mp4", "/hero1.mp4", "/hero3.mp4", "/hero4.mp4"];
 const HERO_CLIP_SECONDS = 8;
+const posterFor = (src: string) => `${src.slice(0, -4)}-poster.webp`;
 
 export function HeroSection() {
   const { lang } = useLang();
@@ -98,62 +98,63 @@ export function HeroSection() {
     <section className="hero" id="home" dir={t.dir}>
 
       {/* L0 — luxury video backdrop.
-          Poster is plain, server-rendered markup — no client JS gate — so it
-          paints on first load before hydration even runs, and became the LCP
-          element in place of the video (Lighthouse traced 84% of mobile LCP
-          to the browser waiting on video decode with nothing to paint in the
-          meantime). It sits behind the video layer and stays as the fallback
-          whenever a clip is between (re)loads.
-          Desktop: all three clips mounted + playing at once, crossfade is
-          a pure opacity dissolve (nothing to (re)load mid-transition).
-          Mobile: only the active clip is ever mounted, so just one file
-          downloads/plays at a time instead of all three simultaneously —
-          same three-clip rotation, a fraction of the data/battery cost. */}
-      <Image
-        src={`${HERO_VIDEOS[0].slice(0, -4)}-poster.webp`}
-        alt=""
-        aria-hidden
-        fill
-        priority
-        quality={70}
-        sizes="100vw"
+          Base clip (index 0) is unconditional, plain server-rendered markup —
+          no client JS gate — so its `poster` is discoverable immediately and
+          paints before hydration even runs. Lighthouse traced 84% of mobile
+          LCP to this element being reachable only after a client-side
+          matchMedia effect resolved, leaving nothing paintable until then;
+          hoisting it out of that gate is what actually fixes it (a same-size
+          poster rendered elsewhere doesn't "win" LCP over the video itself —
+          only removing the gate on the video's own poster does).
+          It never restarts/reloads: the rotation below only ever adds an
+          overlay for whichever *other* clip is current, matched by `key`, so
+          switching back to index 0 just fades the overlay away and reveals
+          this element again, mid-loop.
+          Desktop: current + next overlay clip both mounted so the crossfade
+          is a pure opacity dissolve. Mobile: only the active overlay clip is
+          ever mounted — one file downloads/plays at a time, not all four. */}
+      <video
         className="hero-video"
-        style={{ objectFit: "cover", objectPosition: "center 40%" }}
+        autoPlay muted loop playsInline
+        poster={posterFor(HERO_VIDEOS[0])}
+        src={HERO_VIDEOS[0]}
       />
 
       {videoModeReady && (isSmallScreen ? (
-        <AnimatePresence>
-          <motion.video
-            key={HERO_VIDEOS[activeVideo]}
-            className="hero-video"
-            autoPlay muted loop playsInline
-            poster={`${HERO_VIDEOS[activeVideo].slice(0, -4)}-poster.webp`}
-            src={HERO_VIDEOS[activeVideo]}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            style={{ position: "absolute", inset: 0 }}
-          />
-        </AnimatePresence>
+        /* mobile: base already covers index 0, so skip entirely while it's
+           showing — no reason to mount anything, matching the "one clip at
+           a time" data-saving intent (no preload-ahead here, same as before) */
+        activeVideo !== 0 && (
+          <AnimatePresence>
+            <motion.video
+              key={HERO_VIDEOS[activeVideo]}
+              className="hero-video"
+              autoPlay muted loop playsInline
+              poster={posterFor(HERO_VIDEOS[activeVideo])}
+              src={HERO_VIDEOS[activeVideo]}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }}
+              style={{ position: "absolute", inset: 0 }}
+            />
+          </AnimatePresence>
+        )
       ) : (
-        /* only the active clip + the one queued up next are ever mounted —
-           not all four at once. The crossfade still relies on the .hero-video
-           opacity transition and stable `key`s: when activeVideo advances,
-           the element that WAS "next" keeps its DOM node (same key) and just
-           flips to opacity 1, so the fade is still instant and un-reloaded.
-           Only the new "next" slot mounts fresh, with a full clip's length
-           (HERO_CLIP_SECONDS) to load before its turn comes around. */
-        [activeVideo, (activeVideo + 1) % HERO_VIDEOS.length].map((i) => (
-          <video
-            key={HERO_VIDEOS[i]}
-            className="hero-video"
-            autoPlay muted loop playsInline
-            poster={`${HERO_VIDEOS[i].slice(0, -4)}-poster.webp`}
-            src={HERO_VIDEOS[i]}
-            style={{ opacity: i === activeVideo ? 1 : 0 }}
-          />
-        ))
+        /* desktop: keep priming "next" even while base (index 0) is showing,
+           so the clip after it is already loaded by the time its turn comes */
+        [activeVideo, (activeVideo + 1) % HERO_VIDEOS.length]
+          .filter((i) => i !== 0)
+          .map((i) => (
+            <video
+              key={HERO_VIDEOS[i]}
+              className="hero-video"
+              autoPlay muted loop playsInline
+              poster={posterFor(HERO_VIDEOS[i])}
+              src={HERO_VIDEOS[i]}
+              style={{ opacity: i === activeVideo ? 1 : 0 }}
+            />
+          ))
       ))}
 
       {/* L1 — warm gold colour grade */}
