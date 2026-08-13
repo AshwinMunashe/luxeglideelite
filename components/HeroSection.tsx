@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 import { Phone, MessageCircle, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import { LANG, PHONE, WHATSAPP } from "./lib/Constants";
@@ -97,17 +98,36 @@ export function HeroSection() {
     <section className="hero" id="home" dir={t.dir}>
 
       {/* L0 — luxury video backdrop.
+          Poster is plain, server-rendered markup — no client JS gate — so it
+          paints on first load before hydration even runs, and became the LCP
+          element in place of the video (Lighthouse traced 84% of mobile LCP
+          to the browser waiting on video decode with nothing to paint in the
+          meantime). It sits behind the video layer and stays as the fallback
+          whenever a clip is between (re)loads.
           Desktop: all three clips mounted + playing at once, crossfade is
           a pure opacity dissolve (nothing to (re)load mid-transition).
           Mobile: only the active clip is ever mounted, so just one file
           downloads/plays at a time instead of all three simultaneously —
           same three-clip rotation, a fraction of the data/battery cost. */}
+      <Image
+        src={`${HERO_VIDEOS[0].slice(0, -4)}-poster.webp`}
+        alt=""
+        aria-hidden
+        fill
+        priority
+        quality={70}
+        sizes="100vw"
+        className="hero-video"
+        style={{ objectFit: "cover", objectPosition: "center 40%" }}
+      />
+
       {videoModeReady && (isSmallScreen ? (
         <AnimatePresence>
           <motion.video
             key={HERO_VIDEOS[activeVideo]}
             className="hero-video"
             autoPlay muted loop playsInline
+            poster={`${HERO_VIDEOS[activeVideo].slice(0, -4)}-poster.webp`}
             src={HERO_VIDEOS[activeVideo]}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -129,6 +149,7 @@ export function HeroSection() {
             key={HERO_VIDEOS[i]}
             className="hero-video"
             autoPlay muted loop playsInline
+            poster={`${HERO_VIDEOS[i].slice(0, -4)}-poster.webp`}
             src={HERO_VIDEOS[i]}
             style={{ opacity: i === activeVideo ? 1 : 0 }}
           />
