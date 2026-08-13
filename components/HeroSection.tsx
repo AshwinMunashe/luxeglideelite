@@ -1,13 +1,27 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import { Phone, MessageCircle, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import { LANG, PHONE, WHATSAPP } from "./lib/Constants";
 import { useLang } from "./LangContext";
-import { staggerContainer, fadeUp } from "./motionVariants";
 import { AnimatedStat } from "./AnimatedStat";
 import { Magnetic } from "./Magnetic";
+
+/* the hero's first-paint content is LCP-critical — the site-wide
+   staggerContainer/fadeUp (0.35s stagger, 1.1s duration, meant for
+   whileInView scroll-reveals further down the page, which are never on the
+   critical path) held this text at opacity:0 for 2s+ after mount, and an
+   opacity:0 element can't register as painted, so LCP was waiting on it.
+   Same cascade, fast enough not to block it. */
+const heroStagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0 } },
+};
+const heroFadeUp: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+};
 
 /* deterministic pseudo-random — integer-only LCG, not Math.sin.
    Math.sin() is only spec'd as an "implementation-approximation", so
@@ -215,13 +229,13 @@ export function HeroSection() {
           <motion.div
             key={lang}
             className="h-content"
-            variants={staggerContainer}
+            variants={heroStagger}
             initial="hidden"
             animate="show"
             exit={{ opacity: 0 }}
           >
             {/* tagline line */}
-            <motion.div variants={fadeUp} className={lang === "ar" ? "fa" : "fb"} style={{
+            <motion.div variants={heroFadeUp} className={lang === "ar" ? "fa" : "fb"} style={{
               fontSize: "clamp(9px,.8vw,11px)", letterSpacing: ".4em",
               textTransform: "uppercase", color: "var(--gold)",
               display: "flex", alignItems: "center", gap: 12, marginBottom: 22,
@@ -230,27 +244,27 @@ export function HeroSection() {
               {t.tagline}
             </motion.div>
 
-            <motion.h1 variants={fadeUp} className={`h-hl ${lang === "ar" ? "fa" : "fd"}`} style={{
+            <motion.h1 variants={heroFadeUp} className={`h-hl ${lang === "ar" ? "fa" : "fd"}`} style={{
               fontSize: "clamp(28px,4.4vw,60px)",
               fontWeight: lang === "ar" ? 600 : 400,
               lineHeight: 1.1, color: "var(--off)",
               marginBottom: 2, maxWidth: "100%",
             }}>{t.headline1}</motion.h1>
 
-            <motion.h1 variants={fadeUp} className={`h-hl shimmer ${lang === "ar" ? "fa" : "fd"}`} style={{
+            <motion.h1 variants={heroFadeUp} className={`h-hl shimmer ${lang === "ar" ? "fa" : "fd"}`} style={{
               fontSize: "clamp(28px,4.4vw,60px)",
               fontWeight: 600, fontStyle: lang === "ar" ? "normal" : "italic",
               lineHeight: 1.1,
               marginBottom: "clamp(18px,2.4vh,28px)", maxWidth: "100%",
             }}>{t.headline2}</motion.h1>
 
-            <motion.p variants={fadeUp} className={`h-sub ${lang === "ar" ? "fa" : "fb"}`} style={{
+            <motion.p variants={heroFadeUp} className={`h-sub ${lang === "ar" ? "fa" : "fb"}`} style={{
               fontSize: "clamp(11px,.95vw,15px)", color: "var(--muted)",
               lineHeight: 1.85, marginBottom: "clamp(26px,3.6vh,40px)",
               fontWeight: 300, maxWidth: 480,
             }}>{t.sub}</motion.p>
 
-            <motion.div variants={fadeUp} style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <motion.div variants={heroFadeUp} style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <Magnetic><a href={`tel:${PHONE}`} className="btn-g"><Phone size={12} />{t.call}</a></Magnetic>
               <Magnetic>
                 <a href={`https://wa.me/${WHATSAPP}`} className="btn-o hide-xs" target="_blank" rel="noopener noreferrer">
@@ -269,7 +283,7 @@ export function HeroSection() {
           className="h-stats"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: .7, delay: .15, ease: [.22, 1, .36, 1] }}
+          transition={{ duration: .45, ease: [.22, 1, .36, 1] }}
         >
           {t.stats.map((s, i) => (
             <div key={i} className="h-stat">
