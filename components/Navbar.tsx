@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,6 +20,18 @@ export function Navbar() {
 
   const [open, setOpen] = useState(false);
 
+  /* without this the page behind the menu still scrolls — on iOS that
+     scroll-through also forces the backdrop's blur to recomposite every
+     frame, the exact jank pattern fixed on the main nav */
+  useEffect(() => {
+    if (!open) return;
+    const { overflow } = document.body.style;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = overflow;
+    };
+  }, [open]);
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     if (href.startsWith("/#")) return false;
@@ -32,6 +44,7 @@ export function Navbar() {
 
       {/* NAVBAR */}
       <nav
+        className="main-nav"
         style={{
           position: "fixed",
           top: "var(--topbar-h)",
@@ -39,8 +52,6 @@ export function Navbar() {
           right: 0,
           zIndex: 200,
           height: "var(--nav-h)",
-          background: "rgba(7,7,7,.85)",
-          backdropFilter: "blur(20px)",
           borderBottom: "1px solid rgba(214,180,113,.12)",
           display: "flex",
           alignItems: "center",
@@ -211,7 +222,11 @@ export function Navbar() {
                 variants={staggerContainer}
                 initial="hidden"
                 animate="show"
-                style={{ position: "relative", padding: "76px 28px 32px", display: "flex", flexDirection: "column", flex: 1, textAlign: isRTL ? "right" : "left" }}
+                style={{
+                  position: "relative", padding: "76px 28px 32px", display: "flex", flexDirection: "column", flex: 1,
+                  textAlign: isRTL ? "right" : "left",
+                  overflowY: "auto", WebkitOverflowScrolling: "touch", overscrollBehavior: "contain",
+                }}
                 dir={t.dir}
               >
                 {/* brand mark */}

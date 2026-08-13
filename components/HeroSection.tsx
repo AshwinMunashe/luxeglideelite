@@ -155,7 +155,7 @@ export function HeroSection() {
         position: "absolute", zIndex: 2, pointerEvents: "none",
         top: "50%", left: "50%",
         transform: "translate(-50%, -59%)",
-        fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontStyle: "italic",
+        fontFamily: "var(--font-cormorant),serif", fontWeight: 500, fontStyle: "italic",
         fontSize: "clamp(90px,19vw,280px)",
         color: "var(--gold)", lineHeight: 1,
         userSelect: "none", whiteSpace: "nowrap",

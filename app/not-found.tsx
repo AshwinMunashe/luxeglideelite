@@ -28,7 +28,7 @@ export default function NotFound() {
       }} dir={t.dir}>
         <div className="wm" style={{
           position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
-          fontFamily: "'Cormorant Garamond',serif", fontWeight: 500, fontStyle: "italic",
+          fontFamily: "var(--font-cormorant),serif", fontWeight: 500, fontStyle: "italic",
           fontSize: "clamp(160px,32vw,440px)", color: "var(--gold)", lineHeight: 1,
           userSelect: "none", pointerEvents: "none", mixBlendMode: "overlay",
         }}>404</div>

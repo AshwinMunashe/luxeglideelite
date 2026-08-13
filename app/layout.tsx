@@ -6,6 +6,7 @@ import { PageLoader } from "@/components/PageLoader";
 import { PageTransition } from "@/components/PageTransition";
 import { CustomCursor } from "@/components/CustomCursor";
 import { globalStyles } from "@/components/Styles/Styles";
+import { fontVariables } from "@/components/Styles/fonts";
 import { PHONE, EMAIL, ADDRESS, SOCIAL_LINKS, TESTIMONIALS } from "@/components/lib/Constants";
 
 const siteTitle = "LuxeGlide Elite | Premium Chauffeur Services in Dubai";
@@ -72,12 +73,8 @@ const businessJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={fontVariables}>
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}

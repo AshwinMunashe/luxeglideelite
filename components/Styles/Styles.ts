@@ -1,6 +1,4 @@
 export const globalStyles = `
-  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap');
-
   :root {
     /* gold + navy match the live luxeglideelite.ae brand tokens */
     --gold: #D6B471;
@@ -35,9 +33,9 @@ export const globalStyles = `
     border-radius: 10px; border: 2px solid #0a0a0a;
   }
   ::-webkit-scrollbar-thumb:hover { background: var(--gold-lt); }
-  .fd { font-family: 'Cormorant Garamond', serif; }
-  .fb { font-family: 'Montserrat', sans-serif; }
-  .fa { font-family: 'Noto Naskh Arabic', serif; }
+  .fd { font-family: var(--font-cormorant), serif; }
+  .fb { font-family: var(--font-montserrat), sans-serif; }
+  .fa { font-family: var(--font-noto-naskh), serif; }
 
   /* grain overlay */
   .grain {
@@ -65,7 +63,7 @@ export const globalStyles = `
   /* buttons */
   .btn-g {
     background: var(--gold); color: var(--black);
-    font-family: 'Montserrat', sans-serif; font-weight: 500;
+    font-family: var(--font-montserrat), sans-serif; font-weight: 500;
     font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
     padding: 11px 22px; border-radius: 999px; border: none; cursor: pointer;
     transition: background .3s, transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
@@ -75,7 +73,7 @@ export const globalStyles = `
   .btn-g:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(214,180,113,.35); }
   .btn-o {
     background: transparent; color: var(--gold);
-    font-family: 'Montserrat', sans-serif; font-weight: 400;
+    font-family: var(--font-montserrat), sans-serif; font-weight: 400;
     font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
     padding: 10px 22px; border-radius: 999px; border: 1px solid var(--gold); cursor: pointer;
     transition: background .3s, border-color .3s, transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s;
@@ -91,7 +89,8 @@ export const globalStyles = `
     background: rgba(7,7,7,.65); backdrop-filter: blur(12px);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; color: var(--gold);
-    transition: all .3s; flex-shrink: 0; outline: none;
+    transition: background .3s, border-color .3s, transform .3s, box-shadow .3s;
+    flex-shrink: 0; outline: none;
   }
   .arr:hover { background: var(--gold-dim); border-color: var(--gold); transform: scale(1.08); box-shadow: 0 0 20px rgba(214,180,113,.3); }
   .arr-sm { width: 34px; height: 34px; }
@@ -297,7 +296,7 @@ export const globalStyles = `
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-right:1px solid rgba(255,255,255,0.06);
-  transition: all .45s cubic-bezier(.22,1,.36,1);
+  transition: transform .45s cubic-bezier(.22,1,.36,1), background .45s cubic-bezier(.22,1,.36,1), box-shadow .45s cubic-bezier(.22,1,.36,1);
   overflow:hidden;
 }
 .c-cell::before{
@@ -313,7 +312,7 @@ export const globalStyles = `
     var(--gold),
     transparent
   );
-  transition: all .7s ease;
+  transition: left .7s ease;
 }
   .c-cell:hover .card-title{
   color:var(--gold-lt);
@@ -389,13 +388,13 @@ export const globalStyles = `
   font-size: 9px;
   letter-spacing: .18em;
   color: var(--muted);
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
 }
 
 .spec-value {
   font-size: 13px;
   color: var(--off);
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-cormorant), serif;
   font-weight: 500;
 }
 
@@ -446,7 +445,7 @@ export const globalStyles = `
     background: rgba(255,255,255,.025);
     border: 1px solid rgba(255,255,255,.07);
     border-radius: 14px; padding: 26px 22px;
-    transition: all .3s;
+    transition: border-color .3s, transform .3s, background .3s;
   }
   .svc-card:hover { border-color: rgba(214,180,113,.3); transform: translateY(-4px); background: rgba(214,180,113,.04); }
   .svc-card.ft { background: rgba(214,180,113,.06); border-color: rgba(214,180,113,.35); }
@@ -514,7 +513,7 @@ export const globalStyles = `
   }
   .breadcrumb {
     display: flex; align-items: center; justify-content: center; gap: 8px;
-    font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: .12em;
+    font-family: var(--font-montserrat), sans-serif; font-size: 10px; letter-spacing: .12em;
     text-transform: uppercase; color: var(--muted); margin-top: 18px;
   }
   .breadcrumb a { color: var(--muted); text-decoration: none; transition: color .2s; }
@@ -527,7 +526,7 @@ export const globalStyles = `
     border-radius: 18px; overflow: hidden;
     background: linear-gradient(160deg, rgba(214,180,113,.10), rgba(255,255,255,.02));
     border: 1px solid rgba(214,180,113,.18);
-    transition: all .4s cubic-bezier(.22,1,.36,1);
+    transition: transform .4s cubic-bezier(.22,1,.36,1), border-color .4s cubic-bezier(.22,1,.36,1), box-shadow .4s cubic-bezier(.22,1,.36,1);
   }
   .fleet-card:hover { transform: translateY(-6px); border-color: rgba(214,180,113,.4); box-shadow: 0 24px 50px rgba(0,0,0,.5), 0 0 26px rgba(214,180,113,.10); }
   .fleet-media {
@@ -578,7 +577,7 @@ export const globalStyles = `
     text-align: center;
   }
   .map-card span { font-size: 12px; color: var(--muted); line-height: 1.6; max-width: 260px; }
-  .quote-mark { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 54px; color: rgba(214,180,113,.35); line-height: 1; margin-bottom: 8px; }
+  .quote-mark { font-family: var(--font-cormorant), serif; font-style: italic; font-size: 54px; color: rgba(214,180,113,.35); line-height: 1; margin-bottom: 8px; }
   .stars { display: flex; gap: 3px; margin-bottom: 14px; }
 
   /* about — values grid + timeline */
@@ -695,6 +694,21 @@ export const globalStyles = `
   @media (prefers-reduced-motion: reduce) {
     .cursor-dot, .cursor-ring { transition: none; }
   }
+
+  /* main nav — a fixed, full-width, continuously-scrolled-past element.
+     backdrop-filter forces the browser to recomposite the blur every scroll
+     frame; on mobile GPUs that reads as scroll jank, so mobile gets a plain
+     near-opaque background instead and only desktop pays for the blur */
+  .main-nav {
+    background: rgba(7,7,7,.96);
+  }
+  @media (min-width: 901px) {
+    .main-nav {
+      background: rgba(7,7,7,.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+  }
   /* belt and braces: no device without a fine pointer ever paints these */
   @media (pointer: coarse), (hover: none) {
     .cursor-dot, .cursor-ring { display: none !important; }
@@ -721,7 +735,7 @@ export const globalStyles = `
   .topbar a {
     display: inline-flex; align-items: center; gap: 6px;
     color: rgba(245,240,232,.5); text-decoration: none;
-    font-family: 'Montserrat', sans-serif; font-size: 10.5px; letter-spacing: .03em;
+    font-family: var(--font-montserrat), sans-serif; font-size: 10.5px; letter-spacing: .03em;
     transition: color .2s;
   }
   .topbar-contact a:hover { color: var(--gold); }
