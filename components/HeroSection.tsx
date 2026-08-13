@@ -30,10 +30,10 @@ const PARTICLES = Array.from({ length: 30 }, (_, i) => ({
   delay: round2(seeded(i, 5) * -10),
 }));
 
-/* three clips, always playing in the background — the "cut" is a
+/* four clips, always playing in the background — the "cut" is a
    pure opacity crossfade (see .hero-video transition), never a hard
    swap, so there's no visible loading/black-frame moment mid-fade */
-const HERO_VIDEOS = ["/hero.mp4", "/hero1.mp4", "/hero3.mp4"];
+const HERO_VIDEOS = ["/hero.mp4", "/hero1.mp4", "/hero3.mp4", "/hero4.mp4"];
 const HERO_CLIP_SECONDS = 8;
 
 export function HeroSection() {
@@ -117,12 +117,19 @@ export function HeroSection() {
           />
         </AnimatePresence>
       ) : (
-        HERO_VIDEOS.map((src, i) => (
+        /* only the active clip + the one queued up next are ever mounted —
+           not all four at once. The crossfade still relies on the .hero-video
+           opacity transition and stable `key`s: when activeVideo advances,
+           the element that WAS "next" keeps its DOM node (same key) and just
+           flips to opacity 1, so the fade is still instant and un-reloaded.
+           Only the new "next" slot mounts fresh, with a full clip's length
+           (HERO_CLIP_SECONDS) to load before its turn comes around. */
+        [activeVideo, (activeVideo + 1) % HERO_VIDEOS.length].map((i) => (
           <video
-            key={src}
+            key={HERO_VIDEOS[i]}
             className="hero-video"
             autoPlay muted loop playsInline
-            src={src}
+            src={HERO_VIDEOS[i]}
             style={{ opacity: i === activeVideo ? 1 : 0 }}
           />
         ))

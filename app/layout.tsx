@@ -38,7 +38,7 @@ const businessJsonLd = {
   "@type": "TaxiService",
   "@id": "https://luxeglideelite.ae/#business",
   name: "LuxeGlide Elite",
-  image: "https://luxeglideelite.ae/images/logo.png",
+  image: "https://luxeglideelite.ae/logo.png",
   url: "https://luxeglideelite.ae/",
   telephone: PHONE,
   email: EMAIL,
