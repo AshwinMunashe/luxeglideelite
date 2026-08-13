@@ -48,6 +48,12 @@ export function HeroSection() {
   // mount on mobile while isSmallScreen is still settling
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [videoModeReady, setVideoModeReady] = useState(false);
+  // desktop's "preload the next clip ahead of time" used to start at t=0,
+  // competing for bandwidth with the base clip (the LCP element) during the
+  // exact window that matters most. Delaying it costs nothing — the first
+  // rotation isn't due until HERO_CLIP_SECONDS anyway — but keeps the LCP
+  // request from sharing the pipe with a second multi-MB video
+  const [nextClipReady, setNextClipReady] = useState(false);
   const t = LANG[lang];
   const isRTL = t.dir === "rtl";
   const particles = useMemo(() => PARTICLES, []);
@@ -79,6 +85,11 @@ export function HeroSection() {
       setActiveVideo((prev) => (prev + 1) % HERO_VIDEOS.length);
     }, HERO_CLIP_SECONDS * 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const t = setTimeout(() => setNextClipReady(true), 2500);
+    return () => clearTimeout(t);
   }, []);
 
   return (
@@ -142,9 +153,13 @@ export function HeroSection() {
         )
       ) : (
         /* desktop: keep priming "next" even while base (index 0) is showing,
-           so the clip after it is already loaded by the time its turn comes */
+           so the clip after it is already loaded by the time its turn comes —
+           but not from t=0: the currently-visible clip always renders right
+           away, the *preload-ahead* one waits for nextClipReady so it isn't
+           competing for bandwidth with the LCP-critical base clip */
         [activeVideo, (activeVideo + 1) % HERO_VIDEOS.length]
           .filter((i) => i !== 0)
+          .filter((i) => i === activeVideo || nextClipReady)
           .map((i) => (
             <video
               key={HERO_VIDEOS[i]}
