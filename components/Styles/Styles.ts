@@ -664,22 +664,28 @@ export const globalStyles = `
     100% { transform: translateX(340%); }
   }
 
-  /* custom cursor — only takes over once CustomCursor.tsx confirms a fine
-     pointer and JS actually ran; native cursor is the fallback otherwise */
-  html.custom-cursor-active, html.custom-cursor-active a, html.custom-cursor-active button {
-    cursor: none;
+  /* custom cursor — the class only lands once CustomCursor.tsx has seen a real
+     mouse move, and comes straight back off for touch/blur/tab-switch, so the
+     native cursor is always the fallback. !important is required: dozens of
+     inline cursor:pointer styles would otherwise win and show both cursors */
+  html.custom-cursor-active,
+  html.custom-cursor-active *:not(input):not(textarea):not(select):not([contenteditable]) {
+    cursor: none !important;
   }
   .cursor-dot, .cursor-ring {
-    position: fixed; top: 0; left: 0; z-index: 9999;
+    position: fixed; top: 0; left: 0; z-index: 2147483647;
     pointer-events: none; border-radius: 50%;
+    opacity: 0; will-change: transform;
+    transition: opacity .18s linear;
   }
+  .cursor-dot.cursor-visible, .cursor-ring.cursor-visible { opacity: 1; }
   .cursor-dot {
     width: 6px; height: 6px; background: var(--gold);
   }
   .cursor-ring {
     width: 34px; height: 34px; border: 1px solid rgba(214,180,113,.5);
     transition: width .3s cubic-bezier(.22,1,.36,1), height .3s cubic-bezier(.22,1,.36,1),
-                background .3s, border-color .3s;
+                background .3s, border-color .3s, opacity .18s linear;
   }
   .cursor-ring.cursor-ring-active {
     width: 52px; height: 52px;
@@ -687,7 +693,12 @@ export const globalStyles = `
     border-color: rgba(214,180,113,.8);
   }
   @media (prefers-reduced-motion: reduce) {
-    .cursor-ring { transition: none; }
+    .cursor-dot, .cursor-ring { transition: none; }
+  }
+  /* belt and braces: no device without a fine pointer ever paints these */
+  @media (pointer: coarse), (hover: none) {
+    .cursor-dot, .cursor-ring { display: none !important; }
+    html.custom-cursor-active, html.custom-cursor-active * { cursor: auto !important; }
   }
 
   /* utility top bar — desktop only (900px+), sits above the main nav */
