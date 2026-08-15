@@ -78,6 +78,6 @@ export function ogTemplate({
         <span>luxeglideelite.ae</span>
         <span>DUBAI, UAE</span>
       </div>
-    </div>
+    </div> 
   );
 }
