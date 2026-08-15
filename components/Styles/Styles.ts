@@ -766,4 +766,7 @@ export const globalStyles = `
   .topbar-social { display: flex; align-items: center; gap: 14px; }
   .topbar-social a { color: var(--gold); opacity: .6; transition: opacity .2s, transform .2s; }
   .topbar-social a:hover { opacity: 1; transform: translateY(-1px); }
+
+  .footer-social a { color: var(--gold); opacity: .55; transition: opacity .2s, transform .2s; }
+  .footer-social a:hover { opacity: 1; transform: translateY(-1px); }
 `;

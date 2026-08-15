@@ -4,8 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Phone, MessageCircle, Mail, MapPin, ChevronDown } from "lucide-react";
-import { LANG, SERVICES, AREAS, PHONE, WHATSAPP, EMAIL, ADDRESS, MAPS_URL } from "./lib/Constants";
+import { LANG, SERVICES, AREAS, PHONE, WHATSAPP, EMAIL, ADDRESS, MAPS_URL, SOCIAL_LINKS } from "./lib/Constants";
 import { useLang } from "./LangContext";
+import { InstagramIcon, FacebookIcon, LinkedInIcon, TikTokIcon, YouTubeIcon } from "./SocialIcons";
 
 type AccordionKey = "explore" | "services" | "areas";
 
@@ -19,8 +20,12 @@ export function Footer() {
   const toggle = (key: AccordionKey) => setOpen((o) => ({ ...o, [key]: !o[key] }));
 
   const linkStyle: React.CSSProperties = {
-    display: "block", color: "rgba(245,240,232,.45)", textDecoration: "none",
+    display: "flex", alignItems: "center", gap: 8, color: "rgba(245,240,232,.45)", textDecoration: "none",
     fontSize: 12, lineHeight: 2.1, transition: "color .2s",
+    flexDirection: isRTL ? "row-reverse" : "row",
+  };
+  const bulletStyle: React.CSSProperties = {
+    width: 8, height: 1, background: "var(--gold)", opacity: .55, display: "inline-block", flexShrink: 0,
   };
 
   const accordionBtnStyle: React.CSSProperties = {
@@ -28,6 +33,13 @@ export function Footer() {
     background: "none", border: "none", padding: 0, font: "inherit",
     fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 14,
     flexDirection: isRTL ? "row-reverse" : "row", textAlign: isRTL ? "right" : "left",
+  };
+
+  const dashLabelStyle: React.CSSProperties = {
+    display: "flex", alignItems: "center", gap: 10, flexDirection: isRTL ? "row-reverse" : "row",
+  };
+  const dashStyle: React.CSSProperties = {
+    width: 16, height: 1, background: "var(--gold)", display: "inline-block", flexShrink: 0,
   };
 
   return (
@@ -51,13 +63,23 @@ export function Footer() {
                 ? "Dubai's newest standard for chauffeur-driven luxury — precision, discretion, and craft in every journey."
                 : "المعيار الأحدث للفخامة في دبي بسائق خاص — دقة وتكتم وحرفية في كل رحلة."}
             </p>
+            <div className="footer-social" style={{ display: "flex", alignItems: "center", gap: 14, marginTop: 20, justifyContent: isRTL ? "flex-end" : "flex-start" }}>
+              <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon size={15} /></a>
+              <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FacebookIcon size={15} /></a>
+              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedInIcon size={15} /></a>
+              <a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"><TikTokIcon size={15} /></a>
+              <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><YouTubeIcon size={15} /></a>
+            </div>
           </div>
 
           {/* explore */}
           <div className="footer-explore footer-accordion" data-open={open.explore} style={{ textAlign: isRTL ? "right" : "left" }}>
             <button type="button" className={`${fb} footer-accordion-btn`} style={accordionBtnStyle}
               onClick={() => toggle("explore")} aria-expanded={open.explore}>
-              {lang === "en" ? "Explore" : "استكشف"}
+              <span style={dashLabelStyle}>
+                <span style={dashStyle} />
+                {lang === "en" ? "Explore" : "استكشف"}
+              </span>
               <ChevronDown size={13} className="footer-toggle-icon" style={{ color: "var(--gold)" }} />
             </button>
             <div className="footer-panel-wrap">
@@ -66,6 +88,7 @@ export function Footer() {
                   <Link key={n.href} href={n.href} className={fb} style={linkStyle}
                     onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
                     onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,240,232,.45)")}>
+                    <span style={bulletStyle} />
                     {n.label}
                   </Link>
                 ))}
@@ -77,7 +100,10 @@ export function Footer() {
           <div className="footer-services footer-accordion" data-open={open.services} style={{ textAlign: isRTL ? "right" : "left" }}>
             <button type="button" className={`${fb} footer-accordion-btn`} style={accordionBtnStyle}
               onClick={() => toggle("services")} aria-expanded={open.services}>
-              {t.servicesTag}
+              <span style={dashLabelStyle}>
+                <span style={dashStyle} />
+                {t.servicesTag}
+              </span>
               <ChevronDown size={13} className="footer-toggle-icon" style={{ color: "var(--gold)" }} />
             </button>
             <div className="footer-panel-wrap">
@@ -86,6 +112,7 @@ export function Footer() {
                   <Link key={svc.slug} href={`/services/${svc.slug}`} className={fb} style={linkStyle}
                     onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
                     onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,240,232,.45)")}>
+                    <span style={bulletStyle} />
                     {svc.title[lang]}
                   </Link>
                 ))}
@@ -97,7 +124,10 @@ export function Footer() {
           <div className="footer-areas footer-accordion" data-open={open.areas} style={{ textAlign: isRTL ? "right" : "left" }}>
             <button type="button" className={`${fb} footer-accordion-btn`} style={accordionBtnStyle}
               onClick={() => toggle("areas")} aria-expanded={open.areas}>
-              {t.areasFooterLabel}
+              <span style={dashLabelStyle}>
+                <span style={dashStyle} />
+                {t.areasFooterLabel}
+              </span>
               <ChevronDown size={13} className="footer-toggle-icon" style={{ color: "var(--gold)" }} />
             </button>
             <div className="footer-panel-wrap">
@@ -106,6 +136,7 @@ export function Footer() {
                   <Link key={area.slug} href={`/areas/${area.slug}`} className={fb} style={linkStyle}
                     onMouseEnter={e => (e.currentTarget.style.color = "var(--gold)")}
                     onMouseLeave={e => (e.currentTarget.style.color = "rgba(245,240,232,.45)")}>
+                    <span style={bulletStyle} />
                     {area.name[lang]}
                   </Link>
                 ))}
