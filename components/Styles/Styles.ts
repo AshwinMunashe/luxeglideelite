@@ -590,6 +590,11 @@ export const globalStyles = `
     width: 9px; height: 9px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px rgba(214,180,113,.6);
   }
 
+  /* footer accordion — always fully open on desktop; collapses under the mobile breakpoint below */
+  .footer-panel-wrap { display: grid; grid-template-rows: 1fr; transition: grid-template-rows .35s cubic-bezier(.4,0,.2,1); }
+  .footer-panel-inner { overflow: hidden; }
+  .footer-toggle-icon { display: none; flex-shrink: 0; transition: transform .3s ease; }
+
   @media (max-width: 900px) {
     .fleet-grid { grid-template-columns: repeat(2,1fr) !important; }
     .gallery-grid { grid-template-columns: repeat(2,1fr) !important; }
@@ -600,9 +605,19 @@ export const globalStyles = `
     .values-grid { grid-template-columns: repeat(2,1fr) !important; }
     .footer-grid {
       grid-template-columns: 1fr 1fr !important;
-      grid-template-areas: "brand brand" "explore services" "areas contact" !important;
+      grid-template-areas: "brand brand" "explore services" "areas areas" "contact contact" !important;
       gap: 36px 32px !important;
     }
+    .footer-brand { grid-area: brand !important; }
+    .footer-explore { grid-area: explore !important; }
+    .footer-services { grid-area: services !important; }
+    .footer-areas { grid-area: areas !important; }
+    .footer-contact { grid-area: contact !important; }
+    .footer-accordion-btn { cursor: pointer; }
+    .footer-toggle-icon { display: inline-flex !important; }
+    .footer-accordion .footer-panel-wrap { grid-template-rows: 0fr !important; }
+    .footer-accordion[data-open="true"] .footer-panel-wrap { grid-template-rows: 1fr !important; }
+    .footer-accordion[data-open="true"] .footer-toggle-icon { transform: rotate(180deg); }
     /* every stacked content section on the same 90-100px top+bottom
        rhythm makes mobile pages feel like an endless scroll once grids
        collapse to one column — tighten the rhythm without touching desktop */
@@ -623,7 +638,7 @@ export const globalStyles = `
     .values-grid { grid-template-columns: 1fr !important; }
     .footer-grid {
       grid-template-columns: 1fr 1fr !important;
-      grid-template-areas: "brand brand" "explore services" "areas contact" !important;
+      grid-template-areas: "brand brand" "explore services" "areas areas" "contact contact" !important;
       gap: 28px 20px !important;
     }
     .section-pad { padding-top: 48px !important; padding-bottom: 48px !important; }
