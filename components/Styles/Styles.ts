@@ -598,7 +598,11 @@ export const globalStyles = `
     .contact-form-row { grid-template-columns: 1fr !important; }
     .about-grid, .why-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
     .values-grid { grid-template-columns: repeat(2,1fr) !important; }
-    .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-areas: "brand brand" "explore services" "areas contact" !important;
+      gap: 36px 32px !important;
+    }
     /* every stacked content section on the same 90-100px top+bottom
        rhythm makes mobile pages feel like an endless scroll once grids
        collapse to one column — tighten the rhythm without touching desktop */
@@ -617,7 +621,11 @@ export const globalStyles = `
     .gallery-grid { grid-template-columns: repeat(2,1fr) !important; gap: 10px !important; }
     .testimonial-grid { grid-template-columns: 1fr !important; }
     .values-grid { grid-template-columns: 1fr !important; }
-    .footer-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-areas: "brand brand" "explore services" "areas contact" !important;
+      gap: 28px 20px !important;
+    }
     .section-pad { padding-top: 48px !important; padding-bottom: 48px !important; }
     .section-pad-b { padding-bottom: 48px !important; }
     .about-grid, .why-grid { gap: 28px !important; }

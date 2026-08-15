@@ -29,7 +29,7 @@ export function Footer() {
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "64px clamp(16px,4vw,80px) 36px", position: "relative" }}>
         <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr .85fr .85fr .85fr 1.05fr", gap: 32, marginBottom: 48 }}>
           {/* brand */}
-          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+          <div style={{ textAlign: isRTL ? "right" : "left", gridArea: "brand" }}>
             <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
               <Image src="/images/logo.png" alt="LuxeGlide" width={100} height={30} style={{ height: 26, width: "auto" }} />
             </Link>
@@ -41,7 +41,7 @@ export function Footer() {
           </div>
 
           {/* explore */}
-          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+          <div style={{ textAlign: isRTL ? "right" : "left", gridArea: "explore" }}>
             <div className={fb} style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 14 }}>
               {lang === "en" ? "Explore" : "استكشف"}
             </div>
@@ -55,7 +55,7 @@ export function Footer() {
           </div>
 
           {/* services */}
-          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+          <div style={{ textAlign: isRTL ? "right" : "left", gridArea: "services" }}>
             <div className={fb} style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 14 }}>
               {t.servicesTag}
             </div>
@@ -69,7 +69,7 @@ export function Footer() {
           </div>
 
           {/* areas */}
-          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+          <div style={{ textAlign: isRTL ? "right" : "left", gridArea: "areas" }}>
             <div className={fb} style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 14 }}>
               {t.areasFooterLabel}
             </div>
@@ -83,7 +83,7 @@ export function Footer() {
           </div>
 
           {/* contact */}
-          <div style={{ textAlign: isRTL ? "right" : "left" }}>
+          <div style={{ textAlign: isRTL ? "right" : "left", gridArea: "contact" }}>
             <div className={fb} style={{ fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 14 }}>
               {lang === "en" ? "Contact" : "تواصل"}
             </div>
